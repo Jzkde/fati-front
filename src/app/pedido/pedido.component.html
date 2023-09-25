@@ -1,0 +1,155 @@
+<div class="pedidos">
+    <div class=" mt-5">
+        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="nuevo">
+                +</a></h1>
+        <div class="container mb-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha de Pedido</th>
+                        <th scope="col">Provedor</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Responsable</th>
+                        <th scope="col">N° de Pedido</th>
+                        <th scope="col">N° de Factura</th>
+                        <th scope="col">N° de Remito</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Llego</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Botones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of buscados">
+                        <td>{{pedido.fecha_pedido}}</td>
+                        <td>{{pedido.provedor}}</td>
+                        <td>{{pedido.cliente}}</td>
+                        <td>{{pedido.responsable}}</td>
+                        <td>{{pedido.n_pedido}}</td>
+                        <td>{{pedido.n_factura}}</td>
+                        <td>{{pedido.n_remito}}</td>
+                        <td>{{pedido.monto}}</td>
+                        <td *ngIf="pedido.llego">{{pedido.fecha_llegada}}</td>
+                        <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego"
+                                (change)="actualizar(pedido.id, pedido.llego)" /></td>
+                        <td>{{pedido.estado}}</td>
+                        <td> <button class="btn btn-outline-success" routerLink="editar/{{pedido.id}}">
+                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="busqueda pt-4 pb-4">
+    <h2 class="text-center">Busqueda</h2>
+    &nbsp;
+    <div class="container mb-5">
+        <form>
+            <div class="row">
+                <div class="col-3">
+                    <div class="form-grup">
+                        <label for="provedor"><b>Provedor</b></label>
+                        <div class="input-group">
+                            <input #provedor type="text" class="form-control" name="provedor" id="provedor"
+                                [(ngModel)]="busqueda.provedor">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="form-grup">
+                        <label for="cliente"><b>Cliente</b></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="cliente" id="cliente"
+                                [(ngModel)]="busqueda.cliente">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-grup">
+                        <label for="n_pedido"><b>N° de Pedido</b></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="n_pedido" id="n_pedido"
+                                [(ngModel)]="busqueda.n_pedido">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-grup">
+                        <label for="n_remito"><b>N° de Remito</b></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="n_remito" id="n_remito"
+                                [(ngModel)]="busqueda.n_remito">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <div class="form-grup">
+                        <label for="n_factura"><b>N° de Factura</b></label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="n_factura" id="n_factura"
+                                [(ngModel)]="busqueda.n_factura">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col m-4">
+                    <div class="form-group">
+                        <label for="fecha_pedidoDesde"><b>Fecha Desde</b></label>
+                        <input type="date" class="form-group" name="fecha_pedidoDesde" id="fecha_pedidoDesde"
+                            [(ngModel)]="busqueda.fecha_pedidoDesde">
+                    </div>
+                </div>
+                <div class="col mt-4">
+                    <div class="form-group">
+                        <label for="fecha_pedidoHasta"><b>Fecha Hasta</b></label>
+                        <input type="date" class="form-group" name="fecha_pedidoHasta" id="fecha_pedidoHasta"
+                            [(ngModel)]="busqueda.fecha_pedidoHasta">
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="llego"><b>Llego</b></label>
+                    <div class="form-control">
+                        <label class="radio-inline">
+                            <input type="radio" name="llego" id="llego" checked [value]="''"
+                                [(ngModel)]="busqueda.llego" (change)="filtro()"> Todos
+                        </label>
+                        &nbsp;
+                        <label class="radio-inline">
+                            <input type="radio" name="llego" id="" [value]="true" [(ngModel)]="busqueda.llego"
+                                (change)="filtro()"> Si
+                        </label>
+                        &nbsp;
+                        <label class="radio-inline">
+                            <input type="radio" name="llego" id="" [value]="false" [(ngModel)]="busqueda.llego"
+                                (change)="filtro()"> No
+                        </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="estado"><b>Estado</b></label>
+                        <select class="form-control" name="estado" id="estado" [(ngModel)]="busqueda.estado"
+                            (change)="filtro()">
+                            <option value="">Todos</option>
+                            <option value="pedido">Pedido</option>
+                            <option value="en_transporte">En Transporte</option>
+                            <option value="llego">Llego</option>
+                            <option value="entregado_colocado">Entregado/Colocado</option>
+                            <option value="anulado">Anulado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 text-center">
+                    <label for="reset"><b>Filtro </b></label>
+                    <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()">Borrar</button>
+                    &nbsp;
+                    <button class=" btn btn-outline-success  " (click)="filtro()">Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

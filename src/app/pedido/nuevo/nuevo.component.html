@@ -1,0 +1,97 @@
+<div class="conteiner">
+    <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+            <h2 class="text-center">Nuevo Peddido</h2>
+            <form (ngSubmit)="crear()" novalidate #f="ngForm" class="p-3 bg-success-subtle border-success">
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="provedor">Provedor</label>
+                            <input type="text" class="form-control" name="provedor" id="provedor" [(ngModel)]="provedor"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="via">Via</label>
+                            <input type="text" class="form-control" name="via" id="via" [(ngModel)]="via" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="n_pedido">N° de Pedido</label>
+                            <input type="text" class="form-control" name="n_pedido" id="n_pedido" [(ngModel)]="n_pedido"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="n_factura">N° de Factura</label>
+                            <input type="text" class="form-control" name="n_factura" id="n_factura"
+                                [(ngModel)]="n_factura" required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="n_remito">N° de Remito</label>
+                            <input type="text" class="form-control" name="n_remito" id="n_remito" [(ngModel)]="n_remito"
+                                required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="monto">Monto</label>
+                            <input type="number" class="form-control" name="monto" id="monto" [(ngModel)]="monto"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="cliente">Cliente</label>
+                            <input type="text" class="form-control" name="cliente" id="cliente" [(ngModel)]="cliente"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="responsable">Responsable</label>
+                            <input type="text" class="form-control" name="responsable" id="responsable"
+                                [(ngModel)]="responsable" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones</label>
+                            <textarea style="resize: none;" rows="2" type="text" class="form-control"
+                                name="observaciones" id="observaciones" [(ngModel)]="observaciones"> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <tr>
+                        <td>
+                            <button class="btn btn-success btn-block" [disabled]="!f.valid"> <i
+                                    class="fa-solid fa-floppy-disk" style="color: #000000;"></i>
+                                Guardar</button>
+                        </td>
+                        <td>
+                            <button class="btn  btn-success btn-block" routerLink=""><i
+                                    class="fa-solid fa-backward-fast" style="color: #000000;"></i>
+                                Volver</button>
+                        </td>
+                    </tr>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
