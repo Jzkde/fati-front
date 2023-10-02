@@ -1,0 +1,42 @@
+<div class="pedidos">
+    <div class=" mt-5">
+        <h1 class="text-center">Cliente <a class="btn btn-outline-success" routerLink="/cliente/nuevo">
+                +</a></h1>
+        <div class="container mb-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Telefono</th>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Presupuesto</th>
+                        <th scope="col">Ediar</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    <tr *ngFor="let cliente of clientes">
+                        <td>{{cliente.apellido}}, {{cliente.nombre}}</td>
+                        <td>{{cliente.direccion}}</td>
+                        <td>{{cliente.telefono}}</td>
+                        <td class="col-1"> <button class="btn btn-outline-success"
+                                routerLink="/pedido/nuevo/{{cliente.id}}">
+                                <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></button>
+                        </td>
+                        <td class="col-1 text-center"> <button class="btn btn-outline-success"
+                                routerLink="/presupuesto/nuevo/{{cliente.id}}">
+                                <i class="fa-regular fa-file-lines" style="color: #000000;"></i></button>
+                        </td>
+                        <td class="col-1"> <button class="btn btn-outline-success"
+                                routerLink="/cliente/editar/{{cliente.id}}">
+                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn  btn-success btn-block" routerLink=""><i class="fa-solid fa-backward-fast"
+                    style="color: #000000;"></i>
+                Volver</button>
+        </div>
+    </div>
+</div>

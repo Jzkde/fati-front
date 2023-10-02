@@ -1,0 +1,111 @@
+<div class="conteiner">
+    <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+            <h2 class="text-center">Nuevo Presupuesto</h2>
+            <form (ngSubmit)="crear()" novalidate #f="ngForm" class="p-3 bg-success-subtle border-success">
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="sistema">Sistema</label>
+                            <select class="form-control" name="sistema" id="sistema" [(ngModel)]="sistema">
+                                <option value=""></option>
+                                <option value="ROLLER">Roller</option>
+                                <option value="DUBAI">Dubai</option>
+                                <option value="ORIENTAL">Oriental</option>
+                                <option value="PERCIANA">Perciana</option>
+                                <option value="VERTICALES">Verticales</option>
+                                <option value="AMERICANA">Americana</option>
+                                <option value="PRESILLA">Presilla</option>
+                            </select> 
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="ancho">Ancho</label>
+                            <input type="number" class="form-control" name="ancho" id="ancho" [(ngModel)]="ancho"
+                                required>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="alto">Alto</label>
+                            <input type="number" class="form-control" name="alto" id="alto" [(ngModel)]="alto" required>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="comando">Comando</label>
+                            <select class="form-control" name="comando" id="comando" [(ngModel)]="comando">
+                                <option value=""></option>
+                                <option value="DERECHO">Derecho</option>
+                                <option value="IZQUIERDO">Izquiedo</option>
+                                <option value="NO_APLICA">No Corresponde</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="apertura">Apertura</label>
+                            <select class="form-control" name="apertura" id="apertura" [(ngModel)]="apertura">
+                                <option value=""></option>
+                                <option value="DERECHA">Derecha</option>
+                                <option value="IZQUIERDA">Izquieda</option>
+                                <option value="CENTRAL">Central</option>
+                                <option value="BILATERAL">Bilateral</option>
+                                <option value="NO_APLICA">No Corresponde</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="accesorios">Accesorios</label>
+                            <input type="text" class="form-control" name="accesorios" id="accesorios"
+                                [(ngModel)]="accesorios" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="ambiente">Ambiente</label>
+                            <input type="text" class="form-control" name="ambiente" id="ambiente" [(ngModel)]="ambiente"
+                                required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="observaciones">Observaciones</label>
+                            <textarea style="resize: none;" rows="2" type="text" class="form-control"
+                                name="observaciones" id="observaciones" [(ngModel)]="observaciones"> </textarea>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div>
+                    <tr>
+                        <td>
+                            <button class="btn btn-success btn-block" [disabled]="!f.valid"> <i
+                                    class="fa-solid fa-floppy-disk" style="color: #000000;"></i>
+                                Guardar</button>
+                        </td>
+                        <td>
+                            <button class="btn  btn-success btn-block" routerLink="/cliente/lista"><i
+                                    class="fa-solid fa-backward-fast" style="color: #000000;"></i>
+                                Volver</button>
+                        </td>
+                    </tr>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

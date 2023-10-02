@@ -1,0 +1,40 @@
+<div class="pedidos">
+    <div class=" mt-5">
+        <h1 class="text-center">Presupuestos <a class="btn btn-outline-success" routerLink="/cliente/lista">
+                +</a></h1>
+        <div class="container mb-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Sistema</th>
+                        <th scope="col">Ancho</th>
+                        <th scope="col">Alto</th>
+                        <th scope="col">Comando</th>
+                        <th scope="col">Apertura</th>
+                        <th scope="col">Accesorios</th>
+                        <th scope="col">Ambiente</th>
+                        <th scope="col">Observaciones</th>
+                        <th scope="col">Ediar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let presupuesto of presupuestos"> 
+                        <td>{{presupuesto.sistema}}</td>
+                        <td>{{presupuesto.ancho}}</td>
+                        <td>{{presupuesto.alto}}</td>
+                        <td>{{presupuesto.comando}}</td>
+                        <td>{{presupuesto.apertura}}</td>
+                        <td>{{presupuesto.accesorios}}</td>
+                        <td>{{presupuesto.ambiente}}</td>
+                        <td>{{presupuesto.observaciones}}</td>
+                        <td> <button class="btn btn-outline-success" routerLink="/presupuesto/editar/{{presupuesto.id}}">
+                            <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="btn  btn-success btn-block" routerLink=""><i class="fa-solid fa-backward-fast"
+                style="color: #000000;"></i>
+            Volver</button>
+        </div>
+    </div>
+</div>

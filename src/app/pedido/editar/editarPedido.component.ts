@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Pedido } from 'src/app/models/Pedido';
-import { PedidoService } from '../pedido.service';
+import { Pedido } from 'src/app/models/pedido';
+import { PedidoService } from 'src/app/service/pedido.service';
 
 
 @Component({
   selector: 'app-editar',
-  templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  templateUrl: './editarPedido.component.html',
+  styleUrls: ['./editarPedido.component.css']
 })
-export class EditarComponent implements OnInit {
+export class EditarPedidoComponent implements OnInit {
 
   pedido!: Pedido
   fecha_pedido: String = ''
@@ -23,7 +23,7 @@ export class EditarComponent implements OnInit {
   llego: boolean = false
   fecha_llegada: String = ''
   estado: String = ''
-  cliente: String = ''
+  clienteNombre: String = ''
   responsable: String = ''
 
   constructor(
@@ -47,14 +47,13 @@ export class EditarComponent implements OnInit {
       llego: false,
       fecha_llegada: '',
       estado: '',
-      cliente: '',
+      clienteNombre: '',
       responsable: ''
     }
     const id = this.activatedRoute.snapshot.params['id'];
     this.pedidoService.uno(id).subscribe(
       data => {
         this.pedido = data;
-        console.log(data)
       },
       err => {
         this.toastr.error(err.error.mensaje, 'ERROR', {
@@ -74,19 +73,15 @@ export class EditarComponent implements OnInit {
           timeOut: 2500,
           positionClass: 'toast-center-center'
         });
-        this.router.navigate(['/'])
+        this.router.navigate(['/pedido/lista'])
       },
       err => {
-        this.toastr.error(err.mensaje, 'ERROR', { 
+        this.toastr.error(err.mensaje, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
-     //   this.router.navigate(['/'])
-        console.log(this.pedido);
-        
-
+        this.router.navigate(['/pedido/lista'])
       }
     );
   }
-
 }

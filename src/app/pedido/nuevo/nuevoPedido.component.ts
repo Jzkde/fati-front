@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Pedido } from 'src/app/models/Pedido';
-import { PedidoService } from 'src/app/pedido/pedido.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PedidoService } from 'src/app/service/pedido.service';
 import { ToastrService } from 'ngx-toastr';
+import { Pedido } from 'src/app/models/pedido';
+
 @Component({
-  selector: 'app-nuevo',
-  templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.css']
+  selector: 'app-nuevoPedido',
+  templateUrl: './nuevoPedido.component.html',
+  styleUrls: ['./nuevoPedido.component.css']
 })
-export class NuevoComponent implements OnInit {
+export class NuevoPedidoComponent implements OnInit {
 
   fecha_pedido: String = ''
   provedor: String = ''
@@ -27,12 +28,11 @@ export class NuevoComponent implements OnInit {
   constructor(
     private router: Router,
     private PedidoService: PedidoService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private activatedRoute: ActivatedRoute
   ) { }
 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
   crear(): void {
     const npedido = new Pedido(
       this.provedor,
@@ -44,21 +44,19 @@ export class NuevoComponent implements OnInit {
       this.cliente,
       this.responsable,
     );
-    this.PedidoService.nuevo(npedido).subscribe(
+    const id = this.activatedRoute.snapshot.params['id'];
+    this.PedidoService.nuevo(id, npedido).subscribe(
       data => {
         this.toastr.success('Pedido Guardado', 'OK', {
-
         });
-        this.router.navigate(['/'])
-        console.log(npedido);
-
+        this.router.navigate(['/pedido/lista'])
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'ERROR', {
+        this.toastr.error(err.mensaje, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
-        this.router.navigate(['/'])
+        this.router.navigate(['/pedido/lista'])
       }
     )
 

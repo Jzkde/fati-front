@@ -1,6 +1,6 @@
 <div class="pedidos">
     <div class=" mt-5">
-        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="nuevo">
+        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/cliente/lista">
                 +</a></h1>
         <div class="container mb-3">
             <table class="table table-hover">
@@ -16,24 +16,24 @@
                         <th scope="col">Monto</th>
                         <th scope="col">Llego</th>
                         <th scope="col">Estado</th>
-                        <th scope="col">Botones</th>
+                        <th scope="col">Editar</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr *ngFor="let pedido of buscados">
                         <td>{{pedido.fecha_pedido}}</td>
                         <td>{{pedido.provedor}}</td>
-                        <td>{{pedido.cliente}}</td>
+                        <td>{{pedido.clienteNombre}}</td>
                         <td>{{pedido.responsable}}</td>
                         <td>{{pedido.n_pedido}}</td>
                         <td>{{pedido.n_factura}}</td>
                         <td>{{pedido.n_remito}}</td>
                         <td>{{pedido.monto}}</td>
                         <td *ngIf="pedido.llego">{{pedido.fecha_llegada}}</td>
-                        <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego"
+                        <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego" 
                                 (change)="actualizar(pedido.id, pedido.llego)" /></td>
                         <td>{{pedido.estado}}</td>
-                        <td> <button class="btn btn-outline-success" routerLink="editar/{{pedido.id}}">
+                        <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}">
                                 <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
                     </tr>
                 </tbody>
@@ -58,10 +58,10 @@
                 </div>
                 <div class="col-3">
                     <div class="form-grup">
-                        <label for="cliente"><b>Cliente</b></label>
+                        <label for="clienteNombre"><b>Cliente</b></label>
                         <div class="input-group">
-                            <input type="text" class="form-control" name="cliente" id="cliente"
-                                [(ngModel)]="busqueda.cliente">
+                            <input type="text" class="form-control" name="clienteNombre" id="clienteNombre"
+                                [(ngModel)]="busqueda.clienteNombre">
                         </div>
                     </div>
                 </div>
@@ -148,6 +148,11 @@
                     <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()">Borrar</button>
                     &nbsp;
                     <button class=" btn btn-outline-success  " (click)="filtro()">Buscar</button>
+                </div>
+                <div class="col-3">
+                    <button class="btn  btn-success btn-block" routerLink=""><i class="fa-solid fa-backward-fast"
+                        style="color: #000000;"></i>
+                    Volver</button>
                 </div>
             </div>
         </form>

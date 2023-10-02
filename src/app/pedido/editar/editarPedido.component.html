@@ -1,7 +1,7 @@
 <div class="conteiner">
     <div class="row mt-5">
         <div class="col-md-4 mx-auto">
-            <h2 class="text-center">Editar Peddido</h2>
+            <h2 class="text-center">Editar Pedido</h2>
             <div class="row">
                 <div class="col">
                     <form (ngSubmit)="editar()" novalidate #f="ngForm" class="p-3 bg-success-subtle border-success">
@@ -31,9 +31,9 @@
                             </div>
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="cliente">Cliente</label>
-                                    <input type="text" class="form-control" name="cliente" id="cliente"
-                                        [(ngModel)]="pedido.cliente" required>
+                                    <label for="clienteNombre">Cliente</label>
+                                    <input type="text" class="form-control" name="clienteNombre" id="clienteNombre"
+                                        [(ngModel)]="pedido.clienteNombre" required>
                                 </div>
                             </div>
                         </div>
@@ -74,9 +74,9 @@
                                     <select class="form-control" name="estado" id="estado" [(ngModel)]="pedido.estado"
                                         required>
                                         <option value="PEDIDO">PEDIDO</option>
-                                        <option value="EN_TRANSPORTE">EN_TRANSPORTE</option>
+                                        <option value="EN_TRANSPORTE">EN TRANSPORTE</option>
                                         <option value="LLEGO">LLEGO</option>
-                                        <option value="ENTREGADO_COLOCADO">ENTREGADO_COLOCADO</option>
+                                        <option value="ENTREGADO_COLOCADO">ENTREGADO/COLOCADO</option>
                                         <option value="ANULADO">ANULADO</option>
                                     </select>
                                 </div>

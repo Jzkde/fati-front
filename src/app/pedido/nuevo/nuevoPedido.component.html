@@ -1,7 +1,7 @@
 <div class="conteiner">
     <div class="row mt-5">
         <div class="col-md-4 mx-auto">
-            <h2 class="text-center">Nuevo Peddido</h2>
+            <h2 class="text-center">Nuevo Pedido</h2>
             <form (ngSubmit)="crear()" novalidate #f="ngForm" class="p-3 bg-success-subtle border-success">
                 <div class="row mb-3">
                     <div class="col">
@@ -49,13 +49,14 @@
                                 required>
                         </div>
                     </div>
-                    <div class="col">
+                    <!-- <div class="col">
                         <div class="form-group">
                             <label for="cliente">Cliente</label>
-                            <input type="text" class="form-control" name="cliente" id="cliente" [(ngModel)]="cliente"
-                                required>
+                            <select class="form-control" name="cliente" id="cliente">
+                                <option value="{{clientes.id}}">{{clientes.nombre}} {{clientes.apellido}}</option>
+                            </select>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="row mb-3">
@@ -85,7 +86,7 @@
                                 Guardar</button>
                         </td>
                         <td>
-                            <button class="btn  btn-success btn-block" routerLink=""><i
+                            <button class="btn  btn-success btn-block" routerLink="/cliente/lista"><i
                                     class="fa-solid fa-backward-fast" style="color: #000000;"></i>
                                 Volver</button>
                         </td>

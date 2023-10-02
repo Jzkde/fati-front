@@ -10,7 +10,7 @@ export interface Busqueda{
     llego: String;
     fecha_llegada: String;
     estado: String;
-    cliente: String;
+    clienteNombre: String;
     responsable: String;
 
 }

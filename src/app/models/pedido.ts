@@ -11,7 +11,7 @@ export class Pedido {
     llego?: boolean;
     fecha_llegada?: String;
     estado?: String;
-    cliente: String;
+    clienteNombre: String;
     responsable: String;
     observaciones?: String;
 
@@ -23,7 +23,7 @@ export class Pedido {
         n_factura: String,
         n_remito: String,
         monto: number,
-        cliente: String,
+        clienteNombre: String,
         responsable: String
     ) {
 
@@ -33,7 +33,7 @@ export class Pedido {
         this.n_factura = n_factura;
         this.n_remito = n_remito;
         this.monto = monto;
-        this.cliente = cliente;
+        this.clienteNombre = clienteNombre;
         this.responsable = responsable;
 
 

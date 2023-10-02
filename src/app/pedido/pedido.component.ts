@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Pedido } from '../models/Pedido';
-import { PedidoService } from './pedido.service';
+import { Pedido } from '../models/pedido';
+import { PedidoService } from '../service/pedido.service';
 import { ActivatedRoute } from '@angular/router';
 import { Estado } from '../models/Estado';
 import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-pedido',
@@ -29,7 +30,7 @@ export class PedidoComponent implements OnInit {
     llego: '',
     fecha_llegada: '',
     estado: '',
-    cliente: '',
+    clienteNombre: '',
     responsable: ''
   };
 
@@ -38,23 +39,8 @@ export class PedidoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
   ) { }
 
-
   ngOnInit(): void {
-    this.lista();
     this.filtro();
-
-
-  }
-
-  lista(): void {
-    this.pedidoService.lista().subscribe(
-      data => {
-        this.pedidos = data;
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
 
   filtro(): void {
@@ -67,6 +53,7 @@ export class PedidoComponent implements OnInit {
       }
     );
   }
+
   borrarFiltros(): void {
     this.busqueda.fecha_pedidoDesde = '',
       this.busqueda.fecha_pedidoHasta = '',
@@ -78,7 +65,7 @@ export class PedidoComponent implements OnInit {
       this.busqueda.llego = '',
       this.busqueda.fecha_llegada = '',
       this.busqueda.estado = '',
-      this.busqueda.cliente = '',
+      this.busqueda.clienteNombre = '',
       this.busqueda.responsable = ''
     this.filtro();
   }
@@ -97,15 +84,7 @@ export class PedidoComponent implements OnInit {
     );
 
     window.location.reload();
-
-
-
-
   }
-
-
-
-
 }
 
 
