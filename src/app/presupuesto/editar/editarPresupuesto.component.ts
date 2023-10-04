@@ -37,10 +37,9 @@ export class EditarPresupuestoComponent implements OnInit {
     this.presupuestoService.uno(id).subscribe(
       data => {
         this.presupuesto = data;
-        console.log(data)
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
@@ -60,7 +59,7 @@ export class EditarPresupuestoComponent implements OnInit {
         this.router.navigate(['/presupuesto/lista'])
       },
       err => {
-        this.toastr.error(err.mensaje, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });

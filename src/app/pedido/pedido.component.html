@@ -30,7 +30,7 @@
                         <td>{{pedido.n_remito}}</td>
                         <td>{{pedido.monto}}</td>
                         <td *ngIf="pedido.llego">{{pedido.fecha_llegada}}</td>
-                        <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego" 
+                        <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego" id="{{pedido.id}}"
                                 (change)="actualizar(pedido.id, pedido.llego)" /></td>
                         <td>{{pedido.estado}}</td>
                         <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}">
@@ -112,18 +112,18 @@
                     <label for="llego"><b>Llego</b></label>
                     <div class="form-control">
                         <label class="radio-inline">
-                            <input type="radio" name="llego" id="llego" checked [value]="''"
-                                [(ngModel)]="busqueda.llego" (change)="filtro()"> Todos
+                            <input type="radio" name="llego" id="llego" [value]="''" [(ngModel)]="busqueda.llego"
+                                (change)="filtro()"> Todos
                         </label>
                         &nbsp;
                         <label class="radio-inline">
-                            <input type="radio" name="llego" id="" [value]="true" [(ngModel)]="busqueda.llego"
+                            <input type="radio" name="llego" id="sillego" [value]="true" [(ngModel)]="busqueda.llego"
                                 (change)="filtro()"> Si
                         </label>
                         &nbsp;
                         <label class="radio-inline">
-                            <input type="radio" name="llego" id="" [value]="false" [(ngModel)]="busqueda.llego"
-                                (change)="filtro()"> No
+                            <input type="radio" name="llego" id="nollego" checked [value]="false"
+                                [(ngModel)]="busqueda.llego" (change)="filtro()"> No
                         </label>
                     </div>
                 </div>
@@ -151,8 +151,8 @@
                 </div>
                 <div class="col-3">
                     <button class="btn  btn-success btn-block" routerLink=""><i class="fa-solid fa-backward-fast"
-                        style="color: #000000;"></i>
-                    Volver</button>
+                            style="color: #000000;"></i>
+                        Volver</button>
                 </div>
             </div>
         </form>

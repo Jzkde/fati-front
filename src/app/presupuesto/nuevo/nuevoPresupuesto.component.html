@@ -7,7 +7,7 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="sistema">Sistema</label>
-                            <select class="form-control" name="sistema" id="sistema" [(ngModel)]="sistema">
+                            <select class="form-control" name="sistema" id="sistema" required [(ngModel)]="sistema">
                                 <option value=""></option>
                                 <option value="ROLLER">Roller</option>
                                 <option value="DUBAI">Dubai</option>
@@ -16,7 +16,7 @@
                                 <option value="VERTICALES">Verticales</option>
                                 <option value="AMERICANA">Americana</option>
                                 <option value="PRESILLA">Presilla</option>
-                            </select> 
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -24,14 +24,14 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="ancho">Ancho</label>
-                            <input type="number" class="form-control" name="ancho" id="ancho" [(ngModel)]="ancho"
+                            <input type="number" class="form-control" name="ancho" id="ancho" required [(ngModel)]="ancho"
                                 required>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="alto">Alto</label>
-                            <input type="number" class="form-control" name="alto" id="alto" [(ngModel)]="alto" required>
+                            <input type="number" class="form-control" name="alto" id="alto" required [(ngModel)]="alto" required>
                         </div>
                     </div>
 
@@ -40,24 +40,22 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="comando">Comando</label>
-                            <select class="form-control" name="comando" id="comando" [(ngModel)]="comando">
-                                <option value=""></option>
+                            <select class="form-control" name="comando" id="comando"  [(ngModel)]="comando">
+                                <option value="NO_POSEE"></option>
                                 <option value="DERECHO">Derecho</option>
                                 <option value="IZQUIERDO">Izquiedo</option>
-                                <option value="NO_APLICA">No Corresponde</option>
                             </select>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="apertura">Apertura</label>
-                            <select class="form-control" name="apertura" id="apertura" [(ngModel)]="apertura">
-                                <option value=""></option>
+                            <select class="form-control" name="apertura" id="apertura"  [(ngModel)]="apertura">
+                                <option value="NO_POSEE"></option>
                                 <option value="DERECHA">Derecha</option>
                                 <option value="IZQUIERDA">Izquieda</option>
                                 <option value="CENTRAL">Central</option>
                                 <option value="BILATERAL">Bilateral</option>
-                                <option value="NO_APLICA">No Corresponde</option>
                             </select>
                         </div>
                     </div>
@@ -67,7 +65,7 @@
                         <div class="form-group">
                             <label for="accesorios">Accesorios</label>
                             <input type="text" class="form-control" name="accesorios" id="accesorios"
-                                [(ngModel)]="accesorios" required>
+                                [(ngModel)]="accesorios">
                         </div>
                     </div>
                 </div>
@@ -76,8 +74,8 @@
                     <div class="col">
                         <div class="form-group">
                             <label for="ambiente">Ambiente</label>
-                            <input type="text" class="form-control" name="ambiente" id="ambiente" [(ngModel)]="ambiente"
-                                required>
+                            <input type="text" class="form-control" name="ambiente" id="ambiente"
+                                [(ngModel)]="ambiente">
                         </div>
                     </div>
                 </div>

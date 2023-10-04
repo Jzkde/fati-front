@@ -22,10 +22,12 @@ export class PresupuestoComponent implements OnInit {
     this.presupuestoService.lista().subscribe(
       data => {
         this.presupuestos = data;
+        
       },
       err => {
         console.log(err);
       }
-    );
+      
+      );
   }
 }

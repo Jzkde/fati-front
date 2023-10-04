@@ -35,7 +35,7 @@ export class EditarClienteComponent implements OnInit {
         this.cliente = data;
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'ERROR11', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
@@ -54,7 +54,7 @@ export class EditarClienteComponent implements OnInit {
         this.router.navigate(['/cliente/lista'])
       },
       err => {
-        this.toastr.error(err.message, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });

@@ -47,10 +47,12 @@ export class NuevoPresupuestoComponent implements OnInit {
         this.router.navigate(['/presupuesto/lista'])
       },
       err => {
-        this.toastr.error(err.mensaje, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
+          
         });
+        console.log(err);
         this.router.navigate(['/presupuesto/lista'])
       }
     )

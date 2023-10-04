@@ -56,7 +56,7 @@ export class EditarPedidoComponent implements OnInit {
         this.pedido = data;
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
@@ -76,7 +76,7 @@ export class EditarPedidoComponent implements OnInit {
         this.router.navigate(['/pedido/lista'])
       },
       err => {
-        this.toastr.error(err.mensaje, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });

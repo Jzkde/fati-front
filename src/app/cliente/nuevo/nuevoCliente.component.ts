@@ -38,7 +38,7 @@ export class NuevoClienteComponent implements OnInit {
         this.router.navigate(['/cliente/lista'])
       },
       err => {
-        this.toastr.error(err.message, 'ERROR', {
+        this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
