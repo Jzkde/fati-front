@@ -52,7 +52,7 @@
                         <label for="provedor"><b>Provedor</b></label>
                         <div class="input-group">
                             <input #provedor type="text" class="form-control" name="provedor" id="provedor"
-                                [(ngModel)]="busqueda.provedor">
+                                [(ngModel)]="busqueda.provedor" (input)="filtro()">
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
                         <label for="clienteNombre"><b>Cliente</b></label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="clienteNombre" id="clienteNombre"
-                                [(ngModel)]="busqueda.clienteNombre">
+                                [(ngModel)]="busqueda.clienteNombre" (input)="filtro()">
                         </div>
                     </div>
                 </div>
@@ -70,7 +70,7 @@
                         <label for="n_pedido"><b>N° de Pedido</b></label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="n_pedido" id="n_pedido"
-                                [(ngModel)]="busqueda.n_pedido">
+                                [(ngModel)]="busqueda.n_pedido" (input)="filtro()">
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         <label for="n_remito"><b>N° de Remito</b></label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="n_remito" id="n_remito"
-                                [(ngModel)]="busqueda.n_remito">
+                                [(ngModel)]="busqueda.n_remito" (input)="filtro()">
                         </div>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <label for="n_factura"><b>N° de Factura</b></label>
                         <div class="input-group">
                             <input type="text" class="form-control" name="n_factura" id="n_factura"
-                                [(ngModel)]="busqueda.n_factura">
+                                [(ngModel)]="busqueda.n_factura" (input)="filtro()">
                         </div>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
                         <label for="estado"><b>Estado</b></label>
                         <select class="form-control" name="estado" id="estado" [(ngModel)]="busqueda.estado"
                             (change)="filtro()">
-                            <option value="">Todos</option>
+                            <option v="">Todos</option>
                             <option value="pedido">Pedido</option>
                             <option value="en_transporte">En Transporte</option>
                             <option value="llego">Llego</option>

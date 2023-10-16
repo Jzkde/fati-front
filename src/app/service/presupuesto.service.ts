@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Presupuesto } from '../models/presupuesto';
 import { API } from './api/api';
+import { Busqueda } from '../models/busqueda';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,9 @@ private apiURL: String = API.URL + "presupuesto/"
   }
   uno(id: number): Observable<Presupuesto> {
     return this.httpClient.get<Presupuesto>(this.apiURL + `lista/${id}`);
+  }
+  filtro(busqueda: Busqueda): Observable<any[]> {
+    return this.httpClient.post<any[]>(this.apiURL + 'filtro', busqueda)
   }
   nuevo(id: number,presupuesto: Presupuesto): Observable<Presupuesto> {
     return this.httpClient.post<Presupuesto>(this.apiURL + `nuevo/${id}`, presupuesto)

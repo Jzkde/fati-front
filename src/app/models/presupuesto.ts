@@ -9,6 +9,7 @@ export class Presupuesto {
     accesorios?: String;
     ambiente?: String;
     observaciones?: String;
+    clienteNombre: String;
 
     constructor(
 
@@ -17,6 +18,7 @@ export class Presupuesto {
         alto: number,
         comando: String,
         apertura: String,
+        clienteNombre: String,
         accesorios?: String,
         ambiente?: String,
         observaciones?: String,
@@ -31,6 +33,7 @@ export class Presupuesto {
         this.accesorios =  accesorios
         this.ambiente =  ambiente
         this.observaciones =  observaciones
+        this.clienteNombre = clienteNombre
 
     }
 }

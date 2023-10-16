@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../models/pedido';
 import { PedidoService } from '../service/pedido.service';
-import { ActivatedRoute } from '@angular/router';
 import { Estado } from '../models/Estado';
-import { Location } from '@angular/common';
 
 
 @Component({
@@ -13,11 +11,10 @@ import { Location } from '@angular/common';
 })
 export class PedidoComponent implements OnInit {
 
+
   llego: String = ''
   pedidos: Pedido[] = [];
   buscados: any[] = [];
-
-
 
   busqueda = {
     fecha_pedidoDesde: '',
@@ -36,7 +33,7 @@ export class PedidoComponent implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
-    private activatedRoute: ActivatedRoute,
+
   ) { }
 
   ngOnInit(): void {

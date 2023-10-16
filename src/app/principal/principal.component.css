@@ -2,5 +2,12 @@ img{
     height: 300px;
 }
 .iconos{
-margin-top: 15%
+
+border: 15px ridge #3AA407
 }
+
+.iconos:hover{
+
+    border: 15px groove #3AA407
+    }
+    

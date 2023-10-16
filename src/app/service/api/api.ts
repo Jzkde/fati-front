@@ -6,5 +6,6 @@ export const API = {
   //para el proceso de construccion
 
   URL: "http://localhost:8080/"
+  //URL:"https://fati-decoraciones.onrender.com/"
 
 };
