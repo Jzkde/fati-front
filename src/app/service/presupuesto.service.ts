@@ -23,6 +23,9 @@ private apiURL: String = API.URL + "presupuesto/"
   filtro(busqueda: Busqueda): Observable<any[]> {
     return this.httpClient.post<any[]>(this.apiURL + 'filtro', busqueda)
   }
+  filtrouno(id: number): Observable<Presupuesto[]> {
+    return this.httpClient.get<Presupuesto[]>(this.apiURL + `filtro/${id}`);
+  }
   nuevo(id: number,presupuesto: Presupuesto): Observable<Presupuesto> {
     return this.httpClient.post<Presupuesto>(this.apiURL + `nuevo/${id}`, presupuesto)
   }

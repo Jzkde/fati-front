@@ -10,11 +10,13 @@ import { EditarPresupuestoComponent } from './presupuesto/editar/editarPresupues
 import { NuevoPresupuestoComponent } from './presupuesto/nuevo/nuevoPresupuesto.component';
 import { PresupuestoComponent } from './presupuesto/presupuesto.component';
 import { PrincipalComponent } from './principal/principal.component';
+import {UnoComponent} from './cliente/uno/uno.component'
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
 
   {path: 'cliente/lista', component: ClienteComponent},
+  {path: 'cliente/lista/:id', component: UnoComponent},
   {path: 'cliente/nuevo', component: NuevoClienteComponent},
   {path: 'cliente/editar/:id', component: EditarClienteComponent}, 
 
@@ -26,7 +28,7 @@ const routes: Routes = [
   {path: 'presupuesto/nuevo/:id', component: NuevoPresupuestoComponent},
   {path: 'presupuesto/editar/:id', component: EditarPresupuestoComponent},
 
-  {path: '**', redirectTo: 'lista', pathMatch: 'full'}
+  {path: '**', redirectTo: '', pathMatch: 'full'}
 
 ];
 

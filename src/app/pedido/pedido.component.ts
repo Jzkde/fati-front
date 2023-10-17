@@ -18,7 +18,7 @@ export class PedidoComponent implements OnInit {
 
   busqueda = {
     fecha_pedidoDesde: '',
-    fecha_pedidoHasta: '',
+    fecha_pedidoHasta: '', 
     provedor: '',
     via: '',
     n_pedido: '',

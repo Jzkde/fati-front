@@ -27,6 +27,9 @@ export class PedidoService {
   nuevo(id: number, pedido: Pedido): Observable<Pedido> {
     return this.httpClient.post<Pedido>(this.apiURL + `nuevo/${id}`, pedido)
   }
+  filtrouno(id: number): Observable<Pedido[]> {
+    return this.httpClient.get<Pedido[]>(this.apiURL + `filtro/${id}`);
+  }
   actualizar(id: number, llego: Estado): Observable<any> {
     return this.httpClient.put(this.apiURL + `actualizar/${id}`, llego)
   }

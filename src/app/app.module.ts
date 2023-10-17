@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule} from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { ClienteComponent } from './cliente/cliente.component';
 import { NuevoClienteComponent } from './cliente/nuevo/nuevoCliente.component';
 import { EditarClienteComponent } from './cliente/editar/editarCliente.component';
 import { PrincipalComponent } from './principal/principal.component';
+import { UnoComponent } from './cliente/uno/uno.component';
 
 
 @NgModule({
@@ -36,8 +37,8 @@ import { PrincipalComponent } from './principal/principal.component';
     EditarPresupuestoComponent,
     NuevoClienteComponent,
     EditarClienteComponent,
-    PrincipalComponent
-    
+    PrincipalComponent,
+    UnoComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,6 @@ import { PrincipalComponent } from './principal/principal.component';
     ReactiveFormsModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

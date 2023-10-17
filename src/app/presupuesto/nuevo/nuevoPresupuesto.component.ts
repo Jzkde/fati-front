@@ -14,8 +14,8 @@ export class NuevoPresupuestoComponent implements OnInit {
   sistema: String = '';
   ancho: number = 0;
   alto: number = 0;
-  comando: String = '';
-  apertura: String = '';
+  comando: String = 'NO_POSEE';
+  apertura: String = 'NO_POSEE';
   accesorios: String = '';
   ambiente: String = '';
   observaciones: String = '';

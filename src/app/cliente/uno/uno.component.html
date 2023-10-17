@@ -1,0 +1,87 @@
+<div class="pedidos">
+    <div class=" mt-5">
+        <h1 class="text-center">Ficha de: <b>{{cliente.nombre}} {{cliente.apellido}}</b></h1>
+        <h2 class="text-center" >Direccion: {{cliente.direccion}} - Telefono: {{cliente.telefono}} </h2>
+        <h2 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/pedido/nuevo/{{cliente.id}}">
+                +</a></h2>
+        <div class="container mb-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha de Pedido</th>
+                        <th scope="col">Provedor</th>
+                        <th scope="col">Responsable</th>
+                        <th scope="col">N° de Pedido</th>
+                        <th scope="col">N° de Factura</th>
+                        <th scope="col">N° de Remito</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Llego</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pedido of pedidos">
+                        <td>{{pedido.fecha_pedido}}</td>
+                        <td>{{pedido.provedor}}</td>
+                        <td>{{pedido.responsable}}</td>
+                        <td>{{pedido.n_pedido}}</td>
+                        <td>{{pedido.n_factura}}</td>
+                        <td>{{pedido.n_remito}}</td>
+                        <td>{{pedido.monto}}</td>
+                        <td *ngIf="pedido.llego">{{pedido.fecha_llegada}}</td>
+                        <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego" id="{{pedido.id}}"
+                                (change)="actualizar(pedido.id, pedido.llego)" /></td>
+                        <td>{{pedido.estado}}</td>
+                        <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}">
+                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="presupuestos">
+    <div class=" mt-5">
+        <h2 class="text-center">Presupuestos <a class="btn btn-outline-success"
+                routerLink="/presupuesto/nuevo/{{cliente.id}}">
+                +</a></h2>
+        <div class="container mb-3">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Sistema</th>
+                        <th scope="col">Ancho</th>
+                        <th scope="col">Alto</th>
+                        <th scope="col">Comando</th>
+                        <th scope="col">Apertura</th>
+                        <th scope="col">Accesorios</th>
+                        <th scope="col">Ambiente</th>
+                        <th scope="col">Observaciones</th>
+                        <th scope="col">Ediar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let presupuesto of presupuestos">
+                        <td>{{presupuesto.sistema}}</td>
+                        <td>{{presupuesto.ancho}}</td>
+                        <td>{{presupuesto.alto}}</td>
+                        <td>{{presupuesto.comando}}</td>
+                        <td>{{presupuesto.apertura}}</td>
+                        <td>{{presupuesto.accesorios}}</td>
+                        <td>{{presupuesto.ambiente}}</td>
+                        <td>{{presupuesto.observaciones}}</td>
+                        <td> <button class="btn btn-outline-success"
+                                routerLink="/presupuesto/editar/{{presupuesto.id}}">
+                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+                <button class="btn  btn-success btn-block" routerLink="/cliente/lista"><i
+                        class="fa-solid fa-backward-fast" style="color: #000000;"></i>
+                    Volver</button>
+            </div>
+        </div>
+    </div>
+</div>

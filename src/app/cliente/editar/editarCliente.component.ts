@@ -27,6 +27,8 @@ export class EditarClienteComponent implements OnInit {
       apellido: '',
       direccion: '',
       telefono: '',
+      
+
     }
 
     const id = this.activatedRoute.snapshot.params['id'];
@@ -61,5 +63,8 @@ export class EditarClienteComponent implements OnInit {
         this.router.navigate(['/cliente/lista'])
       }
     );
+  }
+  volver() {
+    this.router.navigate(['/../']);
   }
 }
