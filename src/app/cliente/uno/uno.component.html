@@ -2,7 +2,7 @@
     <div class=" mt-5">
         <h1 class="text-center">Ficha de: <b>{{cliente.nombre}} {{cliente.apellido}}</b></h1>
         <h2 class="text-center" >Direccion: {{cliente.direccion}} - Telefono: {{cliente.telefono}} </h2>
-        <h2 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/pedido/nuevo/{{cliente.id}}">
+        <h2 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/pedido/nuevo/{{cliente.id}}" tooltip="Nuevo Pedido">
                 +</a></h2>
         <div class="container mb-3">
             <table class="table table-hover">
@@ -33,8 +33,8 @@
                         <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego" id="{{pedido.id}}"
                                 (change)="actualizar(pedido.id, pedido.llego)" /></td>
                         <td>{{pedido.estado}}</td>
-                        <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}">
-                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                        <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}" tooltip="Editar Pedido">
+                                <i class="fa-solid fa-pencil" style="color: #000000;" ></i></button></td>
                     </tr>
                 </tbody>
             </table>
@@ -44,7 +44,7 @@
 <div class="presupuestos">
     <div class=" mt-5">
         <h2 class="text-center">Presupuestos <a class="btn btn-outline-success"
-                routerLink="/presupuesto/nuevo/{{cliente.id}}">
+                routerLink="/presupuesto/nuevo/{{cliente.id}}" tooltip="Nuevo Presupuesto">
                 +</a></h2>
         <div class="container mb-3">
             <table class="table table-hover">
@@ -72,15 +72,15 @@
                         <td>{{presupuesto.ambiente}}</td>
                         <td>{{presupuesto.observaciones}}</td>
                         <td> <button class="btn btn-outline-success"
-                                routerLink="/presupuesto/editar/{{presupuesto.id}}">
-                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                                routerLink="/presupuesto/editar/{{presupuesto.id}}" tooltip="Editar Presupuesto">
+                                <i class="fa-solid fa-pencil" style="color: #000000;" ></i></button></td>
                     </tr>
                 </tbody>
             </table>
             <div>
-                <button class="btn  btn-success btn-block" routerLink="/cliente/lista"><i
-                        class="fa-solid fa-backward-fast" style="color: #000000;"></i>
-                    Volver</button>
+                <button class="btn  btn-outline-success btn-block"  (click)="volver()"><i class="fa-solid fa-backward-fast"
+                    style="color: #000000;"></i>
+                Volver</button>
             </div>
         </div>
     </div>

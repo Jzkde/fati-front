@@ -24,7 +24,8 @@ export class Pedido {
         n_remito: String,
         monto: number,
         clienteNombre: String,
-        responsable: String
+        responsable: String,
+        observaciones?: String
     ) {
 
         this.provedor = provedor;
@@ -35,6 +36,7 @@ export class Pedido {
         this.monto = monto;
         this.clienteNombre = clienteNombre;
         this.responsable = responsable;
+        this.observaciones = observaciones;
 
 
     }

@@ -69,4 +69,8 @@ export class UnoComponent implements OnInit {
 
     window.location.reload();
   }
+
+  volver():void{
+    window. history. back();
+  }
 }

@@ -10,6 +10,9 @@ import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 import { PedidoComponent } from './pedido/pedido.component';
 import { NuevoPedidoComponent } from './pedido/nuevo/nuevoPedido.component';
 import { EditarPedidoComponent } from './pedido/editar/editarPedido.component';
@@ -21,9 +24,11 @@ import { EditarPresupuestoComponent } from './presupuesto/editar/editarPresupues
 import { ClienteComponent } from './cliente/cliente.component';
 import { NuevoClienteComponent } from './cliente/nuevo/nuevoCliente.component';
 import { EditarClienteComponent } from './cliente/editar/editarCliente.component';
-import { PrincipalComponent } from './principal/principal.component';
 import { UnoComponent } from './cliente/uno/uno.component';
 
+import { PrincipalComponent } from './principal/principal.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
 
 @NgModule({
   declarations: [
@@ -39,6 +44,7 @@ import { UnoComponent } from './cliente/uno/uno.component';
     EditarClienteComponent,
     PrincipalComponent,
     UnoComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,10 @@ import { UnoComponent } from './cliente/uno/uno.component';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    ModalModule.forRoot(),
+    TooltipModule.forRoot(),
+    CollapseModule.forRoot()
   ],
   bootstrap: [AppComponent],
 })

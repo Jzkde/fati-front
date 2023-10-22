@@ -1,6 +1,6 @@
 <div class="presupuestos">
     <div class=" mt-5">
-        <h1 class="text-center">Presupuestos <a class="btn btn-outline-success" routerLink="/cliente/lista">
+        <h1 class="text-center">Presupuestos <a class="btn btn-outline-success" routerLink="/cliente/lista" tooltip="Nuevo Presuuesto">
                 +</a></h1>
         <div class="container mb-3">
             <table class="table table-hover">
@@ -30,42 +30,65 @@
                         <td>{{presupuesto.ambiente}}</td>
                         <td>{{presupuesto.observaciones}}</td>
                         <td> <button class="btn btn-outline-success"
-                                routerLink="/presupuesto/editar/{{presupuesto.id}}">
+                                routerLink="/presupuesto/editar/{{presupuesto.id}}" tooltip="Editar Presupuesto">
                                 <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
                     </tr>
                 </tbody>
             </table>
+            <button class="btn btn-outline-success" (click)="lgModal.show()"><i class="fa-solid fa-magnifying-glass"
+                    style="color: #000000;"></i> Buscar</button>
+            &nbsp;
+            <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
+                    style="color: #000000;"></i> Borrar filtros</button>
+            &nbsp;
+            <button class="btn  btn-outline-warning btn-block" (click)="volver()"><i class="fa-solid fa-backward-fast"
+                    style="color: #000000;"></i>
+                Volver</button>
+
         </div>
     </div>
 </div>
-<div class="busqueda pt-4 pb-4">
-    <h2 class="text-center">Busqueda</h2>
-    &nbsp;
-    <div class="container mb-5">
-        <form>
-            <div class="row">
-                <div class="col">
-                    <div class="form-grup">
-                        <label for="clienteNombre"><b>Cliente</b></label>
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="clienteNombre" id="clienteNombre"
-                                [(ngModel)]="busqueda.clienteNombre" (input)="filtro()">
-                        </div>
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-sizes-name1" class="modal-title pull-left">Filtros</h4>
+                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
+                    <span aria-hidden="true" class="visually-hidden">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="busqueda pt-4 pb-4">
+                    <div class="container mb-5">
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="form-grup">
+                                        <label for="clienteNombre"><b>Cliente</b></label>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" name="clienteNombre"
+                                                id="clienteNombre" [(ngModel)]="busqueda.clienteNombre"
+                                                (input)="filtro()">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            &nbsp;
+                            <div class="row">
+                                <div class="col">
+                                    <label for="reset"><b>Filtro </b></label>
+                                    <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
+                                        style="color: #000000;"></i> Borrar filtros</button>
+                                    &nbsp;
+                                    <button class=" btn btn-outline-success  " (click)="filtro()"><i
+                                            class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+                                        Buscar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="col-3 text-center">
-                    <label for="reset"><b>Filtro </b></label>
-                    <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()">Borrar</button>
-                    &nbsp;
-                    <button class=" btn btn-outline-success  " (click)="filtro()">Buscar</button>
-                </div>
-                <div class="col-3">
-                    <button class="btn  btn-success btn-block" routerLink=""><i class="fa-solid fa-backward-fast"
-                            style="color: #000000;"></i>
-                        Volver</button>
-                </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
-

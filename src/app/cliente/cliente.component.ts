@@ -14,8 +14,12 @@ export class ClienteComponent implements OnInit {
   constructor(
   private clienteService: ClienteService,
   ){}
+
   ngOnInit(): void {
    this.lista();
+  }
+  volver():void{
+    window. history. back();
   }
 
   lista(): void {

@@ -33,6 +33,11 @@ export class PresupuestoComponent implements OnInit {
   ngOnInit(): void {
     this.filtro();
   }
+
+  volver():void{
+    window. history. back();
+  }
+  
   filtro(): void {
     this.presupuestoService.filtro(this.busqueda).subscribe(
       data => {

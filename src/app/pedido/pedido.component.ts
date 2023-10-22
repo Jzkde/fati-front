@@ -4,6 +4,7 @@ import { PedidoService } from '../service/pedido.service';
 import { Estado } from '../models/Estado';
 
 
+
 @Component({
   selector: 'app-pedido',
   templateUrl: './pedido.component.html',
@@ -11,7 +12,7 @@ import { Estado } from '../models/Estado';
 })
 export class PedidoComponent implements OnInit {
 
-
+  
   llego: String = ''
   pedidos: Pedido[] = [];
   buscados: any[] = [];
@@ -34,12 +35,17 @@ export class PedidoComponent implements OnInit {
   constructor(
     private pedidoService: PedidoService,
 
+
   ) { }
 
   ngOnInit(): void {
     this.filtro();
   }
 
+  volver():void{
+    window. history. back();
+  }
+  
   filtro(): void {
     this.pedidoService.filtro(this.busqueda).subscribe(
       data => {
@@ -50,7 +56,7 @@ export class PedidoComponent implements OnInit {
       }
     );
   }
-
+  
   borrarFiltros(): void {
     this.busqueda.fecha_pedidoDesde = '',
       this.busqueda.fecha_pedidoHasta = '',
@@ -82,6 +88,7 @@ export class PedidoComponent implements OnInit {
 
     window.location.reload();
   }
+    
 }
 
 

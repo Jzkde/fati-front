@@ -43,6 +43,7 @@ export class NuevoPedidoComponent implements OnInit {
       this.monto,
       this.cliente,
       this.responsable,
+      this.observaciones,
     );
     const id = this.activatedRoute.snapshot.params['id'];
     this.PedidoService.nuevo(id, npedido).subscribe(

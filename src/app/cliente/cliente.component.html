@@ -1,6 +1,7 @@
 <div class="pedidos">
     <div class=" mt-5">
-        <h1 class="text-center">Clientes <a class="btn btn-outline-success" routerLink="/cliente/nuevo">
+        <h1 class="text-center">Clientes <a class="btn btn-outline-success" routerLink="/cliente/nuevo"
+                tooltip="Nuevo Cliente">
                 +</a></h1>
         <div class="container mb-3">
             <table class="table table-hover">
@@ -21,25 +22,25 @@
                         <td>{{cliente.direccion}}</td>
                         <td>{{cliente.telefono}}</td>
                         <td class="col-1"> <button class="btn btn-outline-success"
-                                routerLink="/pedido/nuevo/{{cliente.id}}">
+                                routerLink="/pedido/nuevo/{{cliente.id}}" tooltip="Nuevo Pedido" placement="right">
                                 <i class="fa-solid fa-cart-shopping" style="color: #000000;"></i></button>
                         </td>
                         <td class="col-1 text-center"> <button class="btn btn-outline-success"
-                                routerLink="/presupuesto/nuevo/{{cliente.id}}">
+                                routerLink="/presupuesto/nuevo/{{cliente.id}}" tooltip="Nuevo Presupuesto">
                                 <i class="fa-regular fa-file-lines" style="color: #000000;"></i></button>
                         </td>
                         <td class="col-1"> <button class="btn btn-outline-success"
-                                routerLink="/cliente/editar/{{cliente.id}}">
-                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button>
+                                routerLink="/cliente/editar/{{cliente.id}}" tooltip="Editar">
+                                <i class="fa-solid fa-pencil" style="color: #000000;" ></i></button>
                         </td>
                         <td class="col-1"> <button class="btn btn-outline-success"
-                                routerLink="/cliente/lista/{{cliente.id}}">
-                                <i class="fa-solid fa-eye" style="color: #000000;"></i></button>
+                                routerLink="/cliente/lista/{{cliente.id}}" tooltip="Ver Cliente">
+                                <i class="fa-solid fa-eye" style="color: #000000;" ></i></button>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <button class="btn  btn-success btn-block" routerLink=""><i class="fa-solid fa-backward-fast"
+            <button class="btn  btn-outline-success btn-block" (click)="volver()"><i class="fa-solid fa-backward-fast"
                     style="color: #000000;"></i>
                 Volver</button>
         </div>

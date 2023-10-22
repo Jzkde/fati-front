@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-evenly">
+    <button mat-button [matMenuTriggerFor]="menu" class="btn btn-outline-success">Clientes</button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="cliente/lista">Lista</button>
+        <button mat-menu-item routerLink="/cliente/nuevo">Nuevo</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menu2" class="btn btn-outline-success">Pedidos</button>
+    <mat-menu #menu2="matMenu">
+        <button mat-menu-item routerLink="pedido/lista">Lista</button>
+        <button mat-menu-item routerLink="/cliente/lista">Nuevo</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="menu3" class="btn btn-outline-success">Presupuestos</button>
+    <mat-menu #menu3="matMenu">
+        <button mat-menu-item routerLink="presupuesto/lista">Lista</button>
+        <button mat-menu-item routerLink="/cliente/lista">Nuevo</button>
+    </mat-menu>
+</div>
+
+
+
