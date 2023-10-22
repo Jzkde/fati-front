@@ -27,7 +27,9 @@ export class NuevoPresupuestoComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.toastr.clear();
+   }
   crear(): void {
     const npresup = new Presupuesto(
       this.sistema,

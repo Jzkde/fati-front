@@ -16,7 +16,9 @@ export class NuevoClienteComponent implements OnInit {
   direccion: String = ''
   telefono: String = ''
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    this.toastr.clear();
+  }
 
   constructor(
     private router: Router,

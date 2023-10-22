@@ -29,6 +29,7 @@ import { UnoComponent } from './cliente/uno/uno.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
-    CollapseModule.forRoot()
+    CollapseModule.forRoot(),
+    AlertModule.forRoot()
   ],
   bootstrap: [AppComponent],
 })

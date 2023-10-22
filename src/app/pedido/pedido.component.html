@@ -1,12 +1,13 @@
-
 <div class="pedidos">
     <div class=" mt-5">
-        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/cliente/lista" tooltip="Nuevo Pedido">
+        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/cliente/lista"
+                tooltip="Nuevo Pedido">
                 +</a></h1>
         <div class="container mb-3">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Fecha de Pedido</th>
                         <th scope="col">Provedor</th>
                         <th scope="col">Cliente</th>
@@ -22,7 +23,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let pedido of buscados">
-                        <td >{{pedido.fecha_pedido}}</td>
+                        <td>{{pedido.id}}</td>
+                        <ng-container *ngIf="pedido.pasaron > 20 && !pedido.llego">
+                            <td matBadge=" {{pedido.pasaron}}" matBadgeColor="warn" matBadgePosition="before">
+                                {{pedido.fecha_pedido}}</td>
+                        </ng-container>
+                        <ng-container *ngIf="pedido.pasaron <= 20 ||  pedido.llego">
+                            <td>{{pedido.fecha_pedido}}</td>
+                        </ng-container>
                         <td>{{pedido.provedor}}</td>
                         <td>{{pedido.clienteNombre}}</td>
                         <td>{{pedido.responsable}}</td>
@@ -34,19 +42,23 @@
                         <td *ngIf="!pedido.llego"><input type="checkbox" [(ngModel)]="pedido.llego" id="{{pedido.id}}"
                                 (change)="actualizar(pedido.id, pedido.llego)" /></td>
                         <td>{{pedido.estado}}</td>
-                        <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}" tooltip="Editar Pedido">
-                                <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
+                        <td> <button class="btn btn-outline-success" routerLink="/pedido/editar/{{pedido.id}}"
+                                tooltip="Editar Pedido"> <i class="fa-solid fa-pencil" style="color: #000000;"></i>
+                            </button>
+                        </td>
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-outline-success" (click)="lgModal.show()"><i class="fa-solid fa-magnifying-glass" style="color: #000000;"></i> Buscar</button>
+            <button class="btn btn-outline-success" (click)="lgModal.show()"><i class="fa-solid fa-magnifying-glass"
+                    style="color: #000000;"></i> Buscar</button>
             &nbsp;
-            <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser" style="color: #000000;"></i> Borrar filtros</button>
+            <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
+                    style="color: #000000;"></i> Borrar filtros</button>
             &nbsp;
-            <button class="btn  btn-outline-warning btn-block"  (click)="volver()"><i class="fa-solid fa-backward-fast"
+            <button class="btn  btn-outline-warning btn-block" (click)="volver()"><i class="fa-solid fa-backward-fast"
                     style="color: #000000;"></i>
                 Volver</button>
-               
+
         </div>
     </div>
 </div>
@@ -165,14 +177,14 @@
                             </div>
                             <div class="row">
                                 <div class="col-6">
-                                    <label for="reset"><b>Filtro </b></label> 
-                                    <button class=" btn btn-outline-danger " id="reset"
-                                        (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
-                                        style="color: #000000;"></i> Borrar filtros</button>
+                                    <label for="reset"><b>Filtro </b></label>
+                                    <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i
+                                            class="fa-solid fa-eraser" style="color: #000000;"></i> Borrar
+                                        filtros</button>
                                     &nbsp;
                                     <button class=" btn btn-outline-success  " (click)="filtro()"><i
-                                        class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
-                                    Buscar</button>
+                                            class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>
+                                        Buscar</button>
                                 </div>
                             </div>
                         </form>

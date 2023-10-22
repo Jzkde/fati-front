@@ -32,7 +32,9 @@ export class NuevoPedidoComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.toastr.clear();
+   }
   crear(): void {
     const npedido = new Pedido(
       this.provedor,

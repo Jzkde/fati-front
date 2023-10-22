@@ -35,6 +35,7 @@ export class EditarPedidoComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.toastr.clear();
 
     this.pedido = {
       fecha_pedido: '',

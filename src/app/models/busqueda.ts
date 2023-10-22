@@ -1,5 +1,5 @@
 export interface Busqueda{
-    
+    pasaron: String;
     fecha_pedidoDesde: String;
     fecha_pedidoHasta: String;
     provedor: String;

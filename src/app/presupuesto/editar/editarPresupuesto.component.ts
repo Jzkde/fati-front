@@ -21,6 +21,7 @@ export class EditarPresupuestoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.toastr.clear();
 
     this.presupuesto = {
       sistema: '',

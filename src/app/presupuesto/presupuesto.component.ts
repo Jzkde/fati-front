@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Presupuesto } from '../models/presupuesto';
 import { PresupuestoService } from '../service/presupuesto.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-presupuesto',
@@ -13,6 +14,7 @@ export class PresupuestoComponent implements OnInit {
   buscados: any[] = [];
 
   busqueda = {
+    pasaron:'',
     fecha_pedidoDesde: '',
     fecha_pedidoHasta: '',
     provedor: '',
@@ -29,8 +31,10 @@ export class PresupuestoComponent implements OnInit {
 
   constructor(
     private presupuestoService: PresupuestoService,
+    private toastr: ToastrService,
   ) { }
   ngOnInit(): void {
+    this.toastr.clear();
     this.filtro();
   }
 

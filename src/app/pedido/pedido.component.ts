@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Pedido } from '../models/pedido';
 import { PedidoService } from '../service/pedido.service';
 import { Estado } from '../models/Estado';
-
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pedido',
@@ -12,14 +11,15 @@ import { Estado } from '../models/Estado';
 })
 export class PedidoComponent implements OnInit {
 
-  
+  dismissible = true;
   llego: String = ''
   pedidos: Pedido[] = [];
   buscados: any[] = [];
 
   busqueda = {
+    pasaron: '',
     fecha_pedidoDesde: '',
-    fecha_pedidoHasta: '', 
+    fecha_pedidoHasta: '',
     provedor: '',
     via: '',
     n_pedido: '',
@@ -34,29 +34,51 @@ export class PedidoComponent implements OnInit {
 
   constructor(
     private pedidoService: PedidoService,
-
-
+    private toastr: ToastrService,
   ) { }
+
+  fechaActual = Date.now()
 
   ngOnInit(): void {
     this.filtro();
   }
 
-  volver():void{
-    window. history. back();
+  volver(): void {
+    window.history.back();
   }
-  
+  parse(a: string) {
+    Date.parse(a)
+  }
+
   filtro(): void {
+    this.toastr.clear();
     this.pedidoService.filtro(this.busqueda).subscribe(
       data => {
         this.buscados = data;
+        this.buscados.forEach(pedido => {
+          const fechapedido = Date.parse(pedido.fecha_pedido)
+          const pasaron = Math.floor((this.fechaActual - fechapedido) / (1000 * 60 * 60 * 24))
+          pedido.pasaron = pasaron
+          if (pasaron > 20 && !pedido.llego) {
+            this.toastr.error('ID: '+pedido.id + ' - Para: ' + pedido.clienteNombre, 'Pasaron ' + pedido.pasaron + ' Dias desde el pedido', {
+              disableTimeOut: true,
+              positionClass: 'toast-bottom-right',
+            });
+          }
+        })
       },
       err => {
         console.log(err);
       }
     );
   }
-  
+
+  alerts = this.buscados;
+
+  onClosed(dismissedAlert: any): void {
+    this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
+  }
+
   borrarFiltros(): void {
     this.busqueda.fecha_pedidoDesde = '',
       this.busqueda.fecha_pedidoHasta = '',
@@ -85,10 +107,6 @@ export class PedidoComponent implements OnInit {
         console.log(err);
       }
     );
-
     window.location.reload();
   }
-    
 }
-
-

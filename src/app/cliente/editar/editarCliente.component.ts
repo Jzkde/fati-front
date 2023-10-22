@@ -21,7 +21,7 @@ export class EditarClienteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.toastr.clear();
     this.cliente = {
       nombre: '',
       apellido: '',

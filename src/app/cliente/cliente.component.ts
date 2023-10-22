@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cliente } from '../models/cliente';
 import { ClienteService } from '../service/cliente.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cliente',
@@ -8,18 +9,20 @@ import { ClienteService } from '../service/cliente.service';
   styleUrls: ['./cliente.component.css']
 })
 export class ClienteComponent implements OnInit {
-  
+
   clientes: Cliente[] = [];
 
   constructor(
-  private clienteService: ClienteService,
-  ){}
+    private clienteService: ClienteService,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
-   this.lista();
+    this.toastr.clear();
+    this.lista();
   }
-  volver():void{
-    window. history. back();
+  volver(): void {
+    window.history.back();
   }
 
   lista(): void {

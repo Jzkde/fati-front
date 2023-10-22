@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Estado } from 'src/app/models/Estado';
 import { Cliente } from 'src/app/models/cliente';
 import { Pedido } from 'src/app/models/pedido';
@@ -21,7 +22,8 @@ export class UnoComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private clienteService: ClienteService,
     private presupuestoService: PresupuestoService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private toastr: ToastrService,
   ) { }
 
   cliente!: Cliente;
@@ -29,6 +31,7 @@ export class UnoComponent implements OnInit {
   pedidos: any[] = [];
 
   ngOnInit(): void {
+    this.toastr.clear();
 
     this.cliente = {
       nombre: '',
