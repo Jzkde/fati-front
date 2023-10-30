@@ -16,7 +16,7 @@ export class NuevoClienteComponent implements OnInit {
   direccion: String = ''
   telefono: String = ''
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.toastr.clear();
   }
 
@@ -44,7 +44,6 @@ export class NuevoClienteComponent implements OnInit {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
-        this.router.navigate(['/cliente/lista'])
       }
     )
 

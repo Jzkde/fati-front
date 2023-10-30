@@ -52,12 +52,8 @@ export class NuevoPresupuestoComponent implements OnInit {
         this.toastr.error(err.error, 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
-          
         });
-        console.log(err);
-        this.router.navigate(['/presupuesto/lista'])
       }
     )
-
   }
 }

@@ -59,7 +59,6 @@ export class NuevoPedidoComponent implements OnInit {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
-        this.router.navigate(['/pedido/lista'])
       }
     )
 
