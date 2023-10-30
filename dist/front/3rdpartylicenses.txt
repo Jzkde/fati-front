@@ -235,6 +235,33 @@ Awesome, nor vice versa. **Please do not use brand logos for any purpose except
 to represent the company, product, or service to which they refer.**
 
 
+ngx-bootstrap/alert
+MIT
+
+ngx-bootstrap/collapse
+MIT
+
+ngx-bootstrap/component-loader
+MIT
+
+ngx-bootstrap/datepicker
+MIT
+
+ngx-bootstrap/focus-trap
+MIT
+
+ngx-bootstrap/modal
+MIT
+
+ngx-bootstrap/positioning
+MIT
+
+ngx-bootstrap/tooltip
+MIT
+
+ngx-bootstrap/utils
+MIT
+
 ngx-toastr
 MIT
 The MIT License (MIT)
