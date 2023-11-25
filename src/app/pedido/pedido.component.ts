@@ -25,7 +25,7 @@ export class PedidoComponent implements OnInit {
     n_pedido: '',
     n_factura: '',
     n_remito: '',
-    llego: '',
+    llego: 'false',
     fecha_llegada: '',
     estado: '',
     clienteNombre: '',
