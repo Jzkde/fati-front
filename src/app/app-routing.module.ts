@@ -11,6 +11,7 @@ import { NuevoPresupuestoComponent } from './presupuesto/nuevo/nuevoPresupuesto.
 import { PresupuestoComponent } from './presupuesto/presupuesto.component';
 import { PrincipalComponent } from './principal/principal.component';
 import {UnoComponent} from './cliente/uno/uno.component'
+import { CotizadorComponent } from './cotizador/cotizador.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
@@ -27,6 +28,8 @@ const routes: Routes = [
   {path: 'presupuesto/lista', component: PresupuestoComponent},
   {path: 'presupuesto/nuevo/:id', component: NuevoPresupuestoComponent},
   {path: 'presupuesto/editar/:id', component: EditarPresupuestoComponent},
+
+  {path: 'cotizador', component: CotizadorComponent},
 
   {path: '**', redirectTo: '', pathMatch: 'full'}
 

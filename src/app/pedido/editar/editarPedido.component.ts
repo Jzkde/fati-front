@@ -55,6 +55,7 @@ export class EditarPedidoComponent implements OnInit {
     this.pedidoService.uno(id).subscribe(
       data => {
         this.pedido = data;
+        console.log(data);
       },
       err => {
         this.toastr.error(err.error, 'ERROR', {

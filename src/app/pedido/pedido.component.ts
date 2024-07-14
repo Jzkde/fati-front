@@ -11,7 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PedidoComponent implements OnInit {
 
-  dismissible = true;
   llego: String = ''
   pedidos: Pedido[] = [];
   buscados: any[] = [];

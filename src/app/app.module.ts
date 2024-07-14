@@ -30,6 +30,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { CotizadorComponent } from './cotizador/cotizador.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     PrincipalComponent,
     UnoComponent,
     NavbarComponent,
+    CotizadorComponent,
   ],
   imports: [
     BrowserModule,
