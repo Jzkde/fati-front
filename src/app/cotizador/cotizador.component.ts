@@ -18,6 +18,7 @@ export class CotizadorComponent {
   mecanismos: any[] = [];
   mecanismoN: string = "";
   area: number = 0;
+  marca: string = "";
 
   precioTela: number = 0;
   precioSistema: number = 0;
@@ -26,6 +27,10 @@ export class CotizadorComponent {
   sumatoria: number = 0;
 
   constructor(private cotizadorService: CotizadorService) { }
+  
+  onMarca(): void{
+    this.sistema = "";
+  }
 
   onTelaChange() {
     const selectedTela = this.telas.find(t => t.tela === this.telaN);
@@ -36,8 +41,7 @@ export class CotizadorComponent {
     const selectedMecanismo = this.mecanismos.find(m => m.tela === this.mecanismoN);
     this.precioSistema = selectedMecanismo ? selectedMecanismo.precio : 0;
   }
-
-  onSistemaChange(): void {
+  onSistemaRoyal(): void {
     this.telaN = '';
     this.mecanismoN = '';
     this.telas = [];
@@ -47,14 +51,14 @@ export class CotizadorComponent {
     this.resultado = 0;
 
     if (this.sistema) {
-      this.cotizadorService.getTelas(this.sistema).subscribe(
+      this.cotizadorService.getTelasRoyal(this.sistema).subscribe(
         data => this.telas = data,
         error => {
           this.error = 'Error al cargar las telas disponibles';
           this.telas = [];
         }
       );
-      this.cotizadorService.getSistemas(this.sistema).subscribe(
+      this.cotizadorService.getSistemasRoyal(this.sistema).subscribe(
         data => this.mecanismos = data,
         error => {
           this.error = 'Error al cargar los mecanismos disponibles';
@@ -63,14 +67,9 @@ export class CotizadorComponent {
       );
     }
   }
-
-  calcularArea(): number {
-    return this.alto * this.ancho / 10000;
-  }
-
-  cotizar(): void {
+  cotizarRoyal(): void {
     const area = this.calcularArea();
-    this.cotizadorService.cotizar(this.telaN, this.alto, this.ancho, this.sistema)
+    this.cotizadorService.cotizarRoyal(this.telaN, this.alto, this.ancho, this.sistema)
       .subscribe(
         data => {
           this.resultado = data;
@@ -85,6 +84,54 @@ export class CotizadorComponent {
 
         }
       );
+  }
+ 
+  onSistemaFlex(): void {
+    this.telaN = '';
+    this.mecanismoN = '';
+    this.telas = [];
+    this.mecanismos = [];
+    this.precioTela = 0;
+    this.precioSistema = 0;
+    this.resultado = 0;
+
+    if (this.sistema) {
+      this.cotizadorService.getTelasFlex(this.sistema).subscribe(
+        data => this.telas = data,
+        error => {
+          this.error = 'Error al cargar las telas disponibles';
+          this.telas = [];
+        }
+      );
+      this.cotizadorService.getSistemasFlex(this.sistema).subscribe(
+        data => this.mecanismos = data,
+        error => {
+          this.error = 'Error al cargar los mecanismos disponibles';
+          this.mecanismos = [];
+        }
+      );
+    }
+  }
+  cotizarFlex(): void {
+    const area = this.calcularArea();
+    this.cotizadorService.cotizarFlex(this.telaN, this.alto, this.ancho, this.sistema)
+      .subscribe(
+        data => {
+          this.resultado = data;
+          this.error = "";
+          console.log(this.resultado);
+
+        },
+        error => {
+          this.resultado = null;
+          this.error = error.error.text;
+          console.log(error.error.text);
+
+        }
+      );
+  }
+  calcularArea(): number {
+    return this.alto * this.ancho / 10000;
   }
   agregarCotizacion(): void {
     if (this.resultado) {
