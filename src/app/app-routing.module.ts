@@ -12,6 +12,7 @@ import { PresupuestoComponent } from './presupuesto/presupuesto.component';
 import { PrincipalComponent } from './principal/principal.component';
 import {UnoComponent} from './cliente/uno/uno.component'
 import { CotizadorComponent } from './cotizador/cotizador.component';
+import { TelasComponent } from './telas/telas.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
@@ -30,6 +31,8 @@ const routes: Routes = [
   {path: 'presupuesto/editar/:id', component: EditarPresupuestoComponent},
 
   {path: 'cotizador', component: CotizadorComponent},
+
+  {path: 'bd', component: TelasComponent},
 
   {path: '**', redirectTo: '', pathMatch: 'full'}
 

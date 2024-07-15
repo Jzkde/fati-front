@@ -1,0 +1,23 @@
+.table th,
+.table td {
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.table .col-nombre {
+  width: 55%; /* Ancho para la columna de Nombre */
+}
+
+.table .col-precio {
+  width: 15%; /* Ancho para la columna de Número */
+}
+
+.table .col-estela {
+  width: 10%; /* Ancho para la columna de Verdadero/Falso */
+}
+
+.table .col-sistema {
+  width: 20%; /* Ancho para la columna de Opción */
+}

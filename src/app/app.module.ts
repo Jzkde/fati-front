@@ -31,6 +31,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CotizadorComponent } from './cotizador/cotizador.component';
+import { TelasComponent } from './telas/telas.component';
+import { NuevoComponent } from './telas/nuevo/nuevo.component';
+import { EditarComponent } from './telas/editar/editar.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { CotizadorComponent } from './cotizador/cotizador.component';
     UnoComponent,
     NavbarComponent,
     CotizadorComponent,
+    TelasComponent,
+    NuevoComponent,
+    EditarComponent,
   ],
   imports: [
     BrowserModule,
