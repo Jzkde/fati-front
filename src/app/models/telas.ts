@@ -1,4 +1,5 @@
 export interface Telas {
+  id: number;
   tela: string;
   precio: number;
   esTela: boolean;

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { API } from './api/api';
 import { Telas } from '../models/telas';
+import { Busqueda } from '../models/busqueda';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,21 @@ export class TelasService {
   masivo(url: string, porcentaje: number): Observable<any> {
     const params = new HttpParams().set('porcentaje', porcentaje.toString());
     return this.httpClient.put(this.apiTelas + url + "/masivo", {}, { params, responseType: 'text' });
+  }
+
+  filtro(url: string, busqueda: Busqueda): Observable<any[]> {
+    return this.httpClient.post<any[]>(this.apiTelas + url + '/filtro', busqueda)
+  }
+
+  filtroUno(url: string, id: number): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.apiTelas + url + `/lista/${id}`);
+  }
+
+  editar(url: string, id: number, tela: Telas): Observable<any> {
+    return this.httpClient.put(this.apiTelas + url + `/editar/${id}`, tela);
+  }
+
+  borrar(url: string, id: number): Observable<any> {
+    return this.httpClient.delete(this.apiTelas + url + `/borrar/${id}`, { responseType: 'text' });
   }
 }

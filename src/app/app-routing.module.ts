@@ -13,6 +13,7 @@ import { PrincipalComponent } from './principal/principal.component';
 import {UnoComponent} from './cliente/uno/uno.component'
 import { CotizadorComponent } from './cotizador/cotizador.component';
 import { TelasComponent } from './telas/telas.component';
+import { EditarTelasComponent } from './telas/editar-telas/editar-telas.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
@@ -32,7 +33,8 @@ const routes: Routes = [
 
   {path: 'cotizador', component: CotizadorComponent},
 
-  {path: 'bd', component: TelasComponent},
+  {path: 'db', component: TelasComponent},
+  {path: 'tela/editar', component: EditarTelasComponent},
 
   {path: '**', redirectTo: '', pathMatch: 'full'}
 

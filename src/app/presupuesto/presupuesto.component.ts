@@ -26,7 +26,10 @@ export class PresupuestoComponent implements OnInit {
     fecha_llegada: '',
     estado: '',
     clienteNombre: '',
-    responsable: ''
+    responsable: '',
+    tela: '',
+    estela: 'false',
+    sistema: '',
   };
 
   constructor(

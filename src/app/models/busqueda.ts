@@ -12,5 +12,7 @@ export interface Busqueda{
     estado: String;
     clienteNombre: String;
     responsable: String;
-
+    tela: String;
+    estela: String;
+    sistema: String;
 }

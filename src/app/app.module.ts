@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 
@@ -32,8 +33,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { CotizadorComponent } from './cotizador/cotizador.component';
 import { TelasComponent } from './telas/telas.component';
-import { NuevoComponent } from './telas/nuevo/nuevo.component';
-import { EditarComponent } from './telas/editar/editar.component';
+import { EditarTelasComponent } from './telas/editar-telas/editar-telas.component';
 
 @NgModule({
   declarations: [
@@ -52,8 +52,7 @@ import { EditarComponent } from './telas/editar/editar.component';
     NavbarComponent,
     CotizadorComponent,
     TelasComponent,
-    NuevoComponent,
-    EditarComponent,
+    EditarTelasComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,6 +68,7 @@ import { EditarComponent } from './telas/editar/editar.component';
     CollapseModule.forRoot(),
     AlertModule.forRoot()
   ],
+  providers: [BsModalService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -10,10 +10,14 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class TelasComponent {
 
+  isCollapsed1 = true;
+  isCollapsed2 = true;
+  isCollapsed3 = true;
+
   archivo: File | null = null;
   message: string = '';
   marca: string = '';
-  nuevaTela: Telas = { tela: '', precio: 0, esTela: false, sistema: "VACIO" };
+  nuevaTela: Telas = {id: 0, tela: '', precio: 0, esTela: false, sistema: "VACIO" };
   telas: Telas[] = [];
   porcen: number = 0;
 
@@ -53,8 +57,13 @@ export class TelasComponent {
 
   agregar() {
     this.telas.push({ ...this.nuevaTela });
-    this.nuevaTela = { tela: '', precio: 0, esTela: false, sistema: "VACIO" };
+    this.nuevaTela = {id: 0,  tela: '', precio: 0, esTela: false, sistema: "ROLLER" };
   }
+
+  esValido(): boolean {
+    return this.telas.length > 0 && this.marca !== '';
+  }
+  
 
   guardar() {
     this.telasService.saveData(this.marca, this.telas).subscribe(response => {
@@ -68,7 +77,7 @@ export class TelasComponent {
     });
   }
 
- masivo() {
+  masivo() {
     if (this.porcen) {
       this.telasService.masivo(this.marca, this.porcen).subscribe(
         response => {
@@ -76,21 +85,31 @@ export class TelasComponent {
             timeOut: 5000,
             positionClass: 'toast-center-center'
           });
+          this.porcen = 0
         },
         error => {
-          console.error('Error:', error);
-          this.toastr.error(error.error, 'ERROR', {
-            timeOut: 5000,
-            positionClass: 'toast-center-center'
-          });          
-          console.log(error.error);
-          
+          if (error.error == "No hay TELAS cargadas") {
+            console.error('Error:', error.error);
+            this.toastr.error(error.error, 'ERROR', {
+              timeOut: 5000,
+              positionClass: 'toast-center-center'
+            });
+            console.log(error.error);
+          } else {
+            console.error('Error:', error);
+            this.toastr.error("Provedor NO seleccionado", 'ERROR', {
+              timeOut: 5000,
+              positionClass: 'toast-center-center'
+            })
+          };
         }
       );
     } else {
       this.message = 'Porcentaje no especificado';
-      console.log('Porcentaje no especificado');
+      this.toastr.error("Porcentaje NO especificado", 'ERROR', {
+        timeOut: 5000,
+        positionClass: 'toast-center-center'
+      })
     }
   }
-  
 }
