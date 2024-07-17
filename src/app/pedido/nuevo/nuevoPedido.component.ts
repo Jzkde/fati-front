@@ -21,8 +21,8 @@ export class NuevoPedidoComponent implements OnInit {
   llego: boolean = false
   fecha_llegada: String = ''
   estado: String = ''
-  cliente: String = ''
   responsable: String = ''
+  cliente: String = ''
   observaciones: String = ''
 
   constructor(
@@ -43,12 +43,12 @@ export class NuevoPedidoComponent implements OnInit {
       this.n_factura,
       this.n_remito,
       this.monto,
-      this.cliente,
       this.responsable,
+      this.cliente,
       this.observaciones,
     );
     const id = this.activatedRoute.snapshot.params['id'];
-    this.PedidoService.nuevo(id, npedido).subscribe(
+    this.PedidoService.nuevo(npedido).subscribe(
       data => {
         this.toastr.success('Pedido Guardado', 'OK', {
         });

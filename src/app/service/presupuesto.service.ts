@@ -10,7 +10,7 @@ import { Busqueda } from '../models/busqueda';
 })
 export class PresupuestoService {
 
-private apiURL: String = API.URL + "presupuesto/"
+  private apiURL: String = API.URL + "presupuesto/"
 
   constructor(private httpClient: HttpClient) { }
 
@@ -26,14 +26,13 @@ private apiURL: String = API.URL + "presupuesto/"
   filtrouno(id: number): Observable<Presupuesto[]> {
     return this.httpClient.get<Presupuesto[]>(this.apiURL + `filtro/${id}`);
   }
-  nuevo(id: number,presupuesto: Presupuesto): Observable<Presupuesto> {
-    return this.httpClient.post<Presupuesto>(this.apiURL + `nuevo/${id}`, presupuesto)
+  nuevo(presupuesto: Presupuesto): Observable<Presupuesto> {
+    return this.httpClient.post<Presupuesto>(this.apiURL + `nuevo/`, presupuesto)
   }
   editar(id: number, presupuesto: Presupuesto): Observable<any> {
     return this.httpClient.put(this.apiURL + `editar/${id}`, presupuesto)
   }
- 
-
-
-
+  borrar(id: number): Observable<any> {
+    return this.httpClient.delete(this.apiURL + `borrar/${id}`, { responseType: 'text' });
+  }
 }

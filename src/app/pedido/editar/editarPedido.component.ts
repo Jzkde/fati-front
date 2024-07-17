@@ -13,6 +13,7 @@ import { PedidoService } from 'src/app/service/pedido.service';
 export class EditarPedidoComponent implements OnInit {
 
   pedido!: Pedido
+  id: number = 0 
   fecha_pedido: String = ''
   provedor: String = ''
   via: String = ''
@@ -23,8 +24,9 @@ export class EditarPedidoComponent implements OnInit {
   llego: boolean = false
   fecha_llegada: String = ''
   estado: String = ''
-  clienteNombre: String = ''
   responsable: String = ''
+  clienteNombre: String = ''
+  observaciones: String = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,11 +35,11 @@ export class EditarPedidoComponent implements OnInit {
     private router: Router
   ) { }
 
-
   ngOnInit(): void {
     this.toastr.clear();
 
     this.pedido = {
+      id: 0,
       fecha_pedido: '',
       provedor: '',
       via: '',
@@ -48,8 +50,9 @@ export class EditarPedidoComponent implements OnInit {
       llego: false,
       fecha_llegada: '',
       estado: '',
+      responsable: '',
       clienteNombre: '',
-      responsable: ''
+      observaciones: ""
     }
     const id = this.activatedRoute.snapshot.params['id'];
     this.pedidoService.uno(id).subscribe(
@@ -83,6 +86,23 @@ export class EditarPedidoComponent implements OnInit {
           positionClass: 'toast-center-center'
         });
         this.router.navigate(['/pedido/lista'])
+      }
+    );
+  }
+  borrar(id: number): void {
+    this.pedidoService.borrar(id).subscribe(
+      response => {
+        this.toastr.success("PEDIDO eliminado", 'OK', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      },
+      error => {
+        console.error('Error al eliminar:', error);
+        this.toastr.error("No se pudo eliminar el PEDIDO", 'ERROR', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
       }
     );
   }

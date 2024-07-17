@@ -11,9 +11,9 @@ export class Pedido {
     llego?: boolean;
     fecha_llegada?: String;
     estado?: String;
-    clienteNombre: String;
     responsable: String;
     observaciones?: String;
+    clienteNombre: String;
 
     constructor(
 
@@ -23,8 +23,8 @@ export class Pedido {
         n_factura: String,
         n_remito: String,
         monto: number,
-        clienteNombre: String,
         responsable: String,
+        clienteNombre: String,
         observaciones?: String
     ) {
 

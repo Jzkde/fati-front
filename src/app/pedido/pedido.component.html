@@ -1,6 +1,6 @@
 <div class="pedidos">
     <div class=" mt-5">
-        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/cliente/lista"
+        <h1 class="text-center">Pedidos <a class="btn btn-outline-success" routerLink="/pedido/nuevo"
                 tooltip="Nuevo Pedido">
                 +</a></h1>
         <div class="container mb-3">
@@ -32,7 +32,7 @@
                             <td>{{pedido.fecha_pedido}}</td>
                         </ng-container>
                         <td>{{pedido.provedor}}</td>
-                        <td>{{pedido.clienteNombre}}</td>
+                        <td tooltip="{{pedido.observaciones}}">{{pedido.clienteNombre}}</td>
                         <td>{{pedido.responsable}}</td>
                         <td>{{pedido.n_pedido}}</td>
                         <td>{{pedido.n_factura}}</td>

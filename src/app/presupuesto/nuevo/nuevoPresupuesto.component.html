@@ -6,6 +6,15 @@
                 <div class="row mb-3">
                     <div class="col">
                         <div class="form-group">
+                            <label for="cliente">Cliente</label>
+                            <input type="text" class="form-control" name="cliente" id="cliente"
+                                [(ngModel)]="cliente">
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col">
+                        <div class="form-group">
                             <label for="sistema">Sistema</label>
                             <select class="form-control" name="sistema" id="sistema" required [(ngModel)]="sistema">
                                 <option value="NO_POSEE"></option>

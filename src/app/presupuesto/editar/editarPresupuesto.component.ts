@@ -24,15 +24,16 @@ export class EditarPresupuestoComponent implements OnInit {
     this.toastr.clear();
 
     this.presupuesto = {
+      id: 0,
       sistema: '',
       ancho: 0,
       alto: 0,
       comando: '',
       apertura: '',
+      clienteNombre: "",
       accesorios: '',
       ambiente: '',
       observaciones: '',
-      clienteNombre: ""
     }
 
     const id = this.activatedRoute.snapshot.params['id'];
@@ -59,7 +60,7 @@ export class EditarPresupuestoComponent implements OnInit {
           timeOut: 2500,
           positionClass: 'toast-center-center'
         });
-        
+
         this.router.navigate(['/presupuesto/lista'])
       },
       err => {
@@ -70,7 +71,23 @@ export class EditarPresupuestoComponent implements OnInit {
         this.router.navigate(['/presupuesto/lista'])
         console.log(err);
       }
-      );
-    }
+    );
   }
-  
+  borrar(id: number): void {
+    this.presupuestoService.borrar(id).subscribe(
+      response => {
+        this.toastr.success("PRESUPUESTO eliminado", 'OK', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      },
+      error => {
+        console.error('Error al eliminar:', error);
+        this.toastr.error("No se pudo eliminar el PRESUPUESTO", 'ERROR', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      }
+    );
+  }
+}

@@ -16,14 +16,14 @@ export class TelasService {
 
   constructor(private httpClient: HttpClient) { }
 
-  uploadFile(url: string, file: File): Observable<string> {
+  cargar(url: string, file: File): Observable<string> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
     console.log(this.apiURL + url);
     return this.httpClient.post(this.apiURL + url, formData, { responseType: 'text' });
   }
 
-  saveData(url: string, telas: Telas[]): Observable<any> {
+  nuevo(url: string, telas: Telas[]): Observable<any> {
     return this.httpClient.post(this.apiTelas + url + "/varios", telas);
   }
 

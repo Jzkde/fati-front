@@ -16,6 +16,7 @@ export class NuevoPresupuestoComponent implements OnInit {
   alto: number = 0;
   comando: String = 'NO_POSEE';
   apertura: String = 'NO_POSEE';
+  cliente: String = ""
   accesorios: String = '';
   ambiente: String = '';
   observaciones: String = '';
@@ -29,7 +30,7 @@ export class NuevoPresupuestoComponent implements OnInit {
 
   ngOnInit(): void {
     this.toastr.clear();
-   }
+  }
   crear(): void {
     const npresup = new Presupuesto(
       this.sistema,
@@ -37,12 +38,13 @@ export class NuevoPresupuestoComponent implements OnInit {
       this.alto,
       this.comando,
       this.apertura,
+      this.cliente,
       this.accesorios,
       this.ambiente,
       this.observaciones,
     );
     const id = this.activatedRoute.snapshot.params['id'];
-    this.presupuestoService.nuevo(id, npresup).subscribe(
+    this.presupuestoService.nuevo(npresup).subscribe(
       data => {
         this.toastr.success('Presupuesto Creado', 'OK', {
         });

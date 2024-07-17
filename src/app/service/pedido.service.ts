@@ -24,8 +24,8 @@ export class PedidoService {
   filtro(busqueda: Busqueda): Observable<any[]> {
     return this.httpClient.post<any[]>(this.apiURL + 'filtro', busqueda)
   }
-  nuevo(id: number, pedido: Pedido): Observable<Pedido> {
-    return this.httpClient.post<Pedido>(this.apiURL + `nuevo/${id}`, pedido)
+  nuevo(pedido: Pedido): Observable<Pedido> {
+    return this.httpClient.post<Pedido>(this.apiURL + `nuevo`, pedido)
   }
   filtrouno(id: number): Observable<Pedido[]> {
     return this.httpClient.get<Pedido[]>(this.apiURL + `filtro/${id}`);
@@ -35,5 +35,8 @@ export class PedidoService {
   }
   editar(id: number, pedido: Pedido): Observable<any> {
     return this.httpClient.put(this.apiURL + `editar/${id}`, pedido)
+  }
+   borrar(id: number): Observable<any> {
+    return this.httpClient.delete(this.apiURL + `borrar/${id}`, { responseType: 'text' });
   }
 }

@@ -31,7 +31,7 @@ export class TelasComponent {
   }
   carga() {
     if (this.archivo) {
-      this.telasService.uploadFile(this.marca, this.archivo).subscribe(
+      this.telasService.cargar(this.marca, this.archivo).subscribe(
         (response: string) => {
           this.message = response;
           console.log(this.message);
@@ -54,19 +54,15 @@ export class TelasComponent {
       });
     }
   }
-
   agregar() {
     this.telas.push({ ...this.nuevaTela });
     this.nuevaTela = {id: 0,  tela: '', precio: 0, esTela: false, sistema: "ROLLER" };
   }
-
   esValido(): boolean {
     return this.telas.length > 0 && this.marca !== '';
   }
-  
-
-  guardar() {
-    this.telasService.saveData(this.marca, this.telas).subscribe(response => {
+    guardar() {
+    this.telasService.nuevo(this.marca, this.telas).subscribe(response => {
       this.telas = [];
       this.toastr.success("Productos cargados exitosamente", 'OK', {
         timeOut: 5000,
@@ -76,7 +72,6 @@ export class TelasComponent {
       console.error('Error saving data:', error);
     });
   }
-
   masivo() {
     if (this.porcen) {
       this.telasService.masivo(this.marca, this.porcen).subscribe(

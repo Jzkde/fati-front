@@ -18,17 +18,17 @@ import { EditarTelasComponent } from './telas/editar-telas/editar-telas.componen
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
 
-  {path: 'cliente/lista', component: ClienteComponent},
-  {path: 'cliente/lista/:id', component: UnoComponent},
-  {path: 'cliente/nuevo', component: NuevoClienteComponent},
-  {path: 'cliente/editar/:id', component: EditarClienteComponent}, 
+  // {path: 'cliente/lista', component: ClienteComponent},
+  // {path: 'cliente/lista/:id', component: UnoComponent},
+  // {path: 'cliente/nuevo', component: NuevoClienteComponent},
+  // {path: 'cliente/editar/:id', component: EditarClienteComponent}, 
 
   {path: 'pedido/lista', component: PedidoComponent},
-  {path: 'pedido/nuevo/:id', component: NuevoPedidoComponent},
+  {path: 'pedido/nuevo', component: NuevoPedidoComponent},
   {path: 'pedido/editar/:id', component: EditarPedidoComponent},
 
   {path: 'presupuesto/lista', component: PresupuestoComponent},
-  {path: 'presupuesto/nuevo/:id', component: NuevoPresupuestoComponent},
+  {path: 'presupuesto/nuevo', component: NuevoPresupuestoComponent},
   {path: 'presupuesto/editar/:id', component: EditarPresupuestoComponent},
 
   {path: 'cotizador', component: CotizadorComponent},
