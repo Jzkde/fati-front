@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Presupuesto } from '../models/presupuesto';
@@ -10,7 +10,7 @@ import { Busqueda } from '../models/busqueda';
 })
 export class PresupuestoService {
 
-  private apiURL: String = API.URL + "presupuesto/"
+  private apiURL: string = API.URL + "presupuesto/"
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,4 +35,27 @@ export class PresupuestoService {
   borrar(id: number): Observable<any> {
     return this.httpClient.delete(this.apiURL + `borrar/${id}`, { responseType: 'text' });
   }
+  generarPdf(presupuestos: any[]): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return this.httpClient.post(this.apiURL+'pdf', presupuestos, {
+      headers,
+      responseType: 'blob'
+    });
+  }
+
+  descargarPdf(presupuestos: any[]): void {
+    this.generarPdf(presupuestos).subscribe(blob => {
+      const filename = 'presupuesto.zip';
+      saveAs(blob, filename);
+    }, error => {
+      console.error('Error al generar el PDF:', error);
+    });
+  }
 }
+function saveAs(blob: Blob, filename: string) {
+  throw new Error('Function not implemented.');
+}
+

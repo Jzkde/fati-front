@@ -1,11 +1,13 @@
 <div class="presupuestos">
     <div class=" mt-5">
-        <h1 class="text-center">Presupuestos <a class="btn btn-outline-success" routerLink="/presupuesto/nuevo" tooltip="Nuevo Presuuesto">
+        <h1 class="text-center">Presupuestos <a class="btn btn-outline-success" routerLink="/presupuesto/nuevo"
+                tooltip="Nuevo Presuuesto">
                 +</a></h1>
         <div class="container mb-3">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">imprimir</th>
                         <th scope="col">Cliente</th>
                         <th scope="col">Sistema</th>
                         <th scope="col">Ancho</th>
@@ -20,6 +22,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let presupuesto of buscados">
+                        <td><input type="checkbox" (change)="onPresupuestoSelect(presupuesto, $event)"></td>
                         <td>{{presupuesto.clienteNombre}}</td>
                         <td>{{presupuesto.sistema}}</td>
                         <td>{{presupuesto.ancho}}</td>
@@ -29,19 +32,19 @@
                         <td>{{presupuesto.accesorios}}</td>
                         <td>{{presupuesto.ambiente}}</td>
                         <td>{{presupuesto.observaciones}}</td>
-                        <td> <button class="btn btn-outline-success"
-                                routerLink="/presupuesto/editar/{{presupuesto.id}}" tooltip="Editar Presupuesto">
+                        <td> <button class="btn btn-outline-success" routerLink="/presupuesto/editar/{{presupuesto.id}}"
+                                tooltip="Editar Presupuesto">
                                 <i class="fa-solid fa-pencil" style="color: #000000;"></i></button></td>
                     </tr>
                 </tbody>
             </table>
-            <button class="btn btn-outline-success" (click)="lgModal.show()"><i class="fa-solid fa-magnifying-glass"
+            <button class="btn btn-outline-primary m-2" (click)="generarYDescargarPdf()"><i class="fa-solid fa-print"
+                    style="color: #000000;"></i> Imprimir</button>
+            <button class="btn btn-outline-success  m-2" (click)="lgModal.show()"><i class="fa-solid fa-magnifying-glass"
                     style="color: #000000;"></i> Buscar</button>
-            &nbsp;
-            <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
+            <button class=" btn btn-outline-danger m-2" id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
                     style="color: #000000;"></i> Borrar filtros</button>
-            &nbsp;
-            <button class="btn  btn-outline-warning btn-block" (click)="volver()"><i class="fa-solid fa-backward-fast"
+            <button class="btn  btn-outline-warning m-2" (click)="volver()"><i class="fa-solid fa-backward-fast"
                     style="color: #000000;"></i>
                 Volver</button>
 
@@ -77,8 +80,9 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="reset"><b>Filtro </b></label>
-                                    <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i class="fa-solid fa-eraser"
-                                        style="color: #000000;"></i> Borrar filtros</button>
+                                    <button class=" btn btn-outline-danger " id="reset" (click)="borrarFiltros()"><i
+                                            class="fa-solid fa-eraser" style="color: #000000;"></i> Borrar
+                                        filtros</button>
                                     &nbsp;
                                     <button class=" btn btn-outline-success  " (click)="filtro()"><i
                                             class="fa-solid fa-magnifying-glass" style="color: #000000;"></i>

@@ -27,6 +27,7 @@
     "@material/card": "^15.0.0-canary.bc9ae6c9c.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.3",
+    "file-saver": "^2.0.5",
     "ngx-bootstrap": "^11.0.2",
     "ngx-toastr": "^17.0.2",
     "rxjs": "~7.8.0",

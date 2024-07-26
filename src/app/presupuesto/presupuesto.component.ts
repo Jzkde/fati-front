@@ -12,9 +12,11 @@ export class PresupuestoComponent implements OnInit {
 
   presupuestos: Presupuesto[] = [];
   buscados: any[] = [];
+  selectedPresupuestos: Presupuesto[] = [];
+
 
   busqueda = {
-    pasaron:'',
+    pasaron: '',
     fecha_pedidoDesde: '',
     fecha_pedidoHasta: '',
     provedor: '',
@@ -41,10 +43,10 @@ export class PresupuestoComponent implements OnInit {
     this.filtro();
   }
 
-  volver():void{
-    window. history. back();
+  volver(): void {
+    window.history.back();
   }
-  
+
   filtro(): void {
     this.presupuestoService.filtro(this.busqueda).subscribe(
       data => {
@@ -84,5 +86,38 @@ export class PresupuestoComponent implements OnInit {
       }
 
     );
+  }
+  onPresupuestoSelect(presupuesto: Presupuesto, event: any): void {
+    if (event.target.checked) {
+      this.selectedPresupuestos.push(presupuesto);
+    } else {
+      const index = this.selectedPresupuestos.indexOf(presupuesto);
+      if (index > -1) {
+        this.selectedPresupuestos.splice(index, 1);
+      }
+    }
+  }
+  generarYDescargarPdf() {
+    this.presupuestoService.generarPdf(this.selectedPresupuestos).subscribe((response: Blob) => {
+      // Obtener el tipo de contenido desde la respuesta
+      const contentType = response.type;
+  
+      // Determinar el nombre del archivo en función del tipo de contenido
+      let fileName = 'presupuesto.zip';
+      if (contentType.includes('pdf')) {
+        fileName = 'presupuesto.pdf';
+      }
+
+      // Crear un enlace temporal para descargar el archivo
+      const url = window.URL.createObjectURL(response);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+    }, error => {
+      console.error('Error al generar el PDF:', error);
+    });
   }
 }
