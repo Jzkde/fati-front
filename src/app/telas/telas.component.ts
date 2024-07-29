@@ -17,9 +17,23 @@ export class TelasComponent {
   archivo: File | null = null;
   message: string = '';
   marca: string = '';
-  nuevaTela: Telas = {id: 0, tela: '', precio: 0, esTela: false, sistema: "VACIO" };
+
   telas: Telas[] = [];
+  nuevaTela: Telas = {
+    id: 0,
+    tela: '',
+    precio: 0,
+    esTela: false,
+    sistema: "VACIO"
+  };
+
+  servs: any[] = []
+  nuevoServ: any = {
+    id: 0,
+    tipo: '', precio: 0
+  };
   porcen: number = 0;
+  prod: any[] = []
 
   constructor(
     private telasService: TelasService,
@@ -55,14 +69,26 @@ export class TelasComponent {
     }
   }
   agregar() {
-    this.telas.push({ ...this.nuevaTela });
-    this.nuevaTela = {id: 0,  tela: '', precio: 0, esTela: false, sistema: "ROLLER" };
+    if (this.marca == "fati") {
+      this.servs.push({ ...this.nuevoServ });
+      this.nuevoServ = { id: 0, tipo: '', precio: 0 };
+    } else {
+      this.telas.push({ ...this.nuevaTela });
+      this.nuevaTela = { id: 0, tela: '', precio: 0, esTela: false, sistema: "ROLLER" };
+    }
   }
   esValido(): boolean {
-    return this.telas.length > 0 && this.marca !== '';
+    if (this.marca == 'fati') {
+      return (this.servs.length > 0);
+    } else {
+      return (this.telas.length > 0 && this.marca !== '');
+    }
   }
-    guardar() {
-    this.telasService.nuevo(this.marca, this.telas).subscribe(response => {
+  guardar() {
+    this.prod = this.marca === 'fati' ? this.servs : this.telas;
+
+    this.telasService.nuevo(this.marca, this.prod).subscribe(response => {
+      this.servs = [];
       this.telas = [];
       this.toastr.success("Productos cargados exitosamente", 'OK', {
         timeOut: 5000,

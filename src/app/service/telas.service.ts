@@ -37,6 +37,7 @@ export class TelasService {
   }
 
   filtroUno(url: string, id: number): Observable<any[]> {
+    console.log(this.apiTelas + url + `/lista/${id}`);
     return this.httpClient.get<any[]>(this.apiTelas + url + `/lista/${id}`);
   }
 
@@ -46,5 +47,9 @@ export class TelasService {
 
   borrar(url: string, id: number): Observable<any> {
     return this.httpClient.delete(this.apiTelas + url + `/borrar/${id}`, { responseType: 'text' });
+  }
+  
+  getFati(url: string): Observable<any[]> {
+    return this.httpClient.get<any[]>(this.apiTelas + url + `/lista`);
   }
 }

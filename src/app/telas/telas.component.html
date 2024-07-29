@@ -7,6 +7,9 @@
         <input type="radio" class="btn-check" name="marca" id="royal" [(ngModel)]="marca" value="royal"
             autocomplete="off">
         <label class="btn btn-outline-dark" for="royal">Royal Cort</label>
+        <input type="radio" class="btn-check" name="marca" id="fati" [(ngModel)]="marca" value="fati"
+            autocomplete="off">
+        <label class="btn btn-outline-dark m-2" for="fati">Fati</label>
     </div>
 </div>
 <div class="d-flex justify-content-center m-4">
@@ -36,14 +39,14 @@
         <h2>Cargar desde Archivo</h2>
         <div class="d-flex justify-content-center">
             <input class="border rounded border-black p-2" type="file" (change)="archivoSelec($event)" />
-            <button class="btn btn-success btn-block m-2 p-2" (click)="carga()">Cargar</button>
+            <button class="btn btn-success btn-block m-2 p-2" [disabled]="marca == 'fati' " (click)="carga()">Cargar</button>
         </div>
     </div>
 </div>
 <div id="cargamanual" [collapse]="isCollapsed3" [isAnimated]="true">
     <div class="container bg-primary-subtle border-primary mt-3 p-3">
         <h2>Cargar Manual</h2>
-        <form (ngSubmit)="agregar()" #entryForm="ngForm">
+        <form *ngIf="marca != 'fati'" (ngSubmit)="agregar()" #entryForm="ngForm">
             <table class="table table-primary mt-3 ">
                 <thead class="text-center">
                     <tr>
@@ -84,6 +87,7 @@
                                     <option value="ORIENTAL">Oriental</option>
                                     <option value="ROMANA">Romana</option>
                                     <option value="ZEBRA">Zebra</option>
+                                    <option value="ADICIONAL">Adicional</option>
                                 </select>
                             </div>
                         </td>
@@ -111,6 +115,50 @@
                 </tbody>
             </table>
         </form>
+
+        <form *ngIf="marca == 'fati'" (ngSubmit)="agregar()" #entryForm="ngForm">
+            <table class="table table-primary mt-3 ">
+                <thead class="text-center">
+                    <tr>
+                        <th class="col-nombre">Nombre</th>
+                        <th class="col-precio">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-nombre">
+                            <div class="form-group">
+                                <input type="text" class="form-control" [(ngModel)]="nuevoServ.tipo" name="tipo"
+                                    placeholder="Nombre" required>
+                            </div>
+                        </td>
+                        <td class="col-precio">
+                            <div class="form-group">
+                                <input type="number" class="form-control" [(ngModel)]="nuevoServ.precio" name="precio"
+                                    placeholder="Número" required>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="submit" class="btn btn-primary" [disabled]="!entryForm.form.valid">Agregar
+                Entrada</button>
+            <table class="table table-primary mt-3">
+                <thead class="text-center">
+                    <tr>
+                        <th class="col-nombre">Nombre</th>
+                        <th class="col-precio">Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let serv of servs">
+                        <td class="col-nombre">{{ serv.tipo }}</td>
+                        <td class="col-precio">{{ serv.precio }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
         <button class="btn btn-success" (click)="guardar()" [disabled]="!esValido()">Guardar Todo</button>
     </div>
 </div>
