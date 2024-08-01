@@ -12,7 +12,7 @@ export class CotizadorComponent {
   sistema: string = "";
   resultado: any;
   error: string = "";
-  
+
   telas: any[] = [];
   telaN: string = "";
   mecanismos: any[] = [];
@@ -62,7 +62,7 @@ export class CotizadorComponent {
     this.precioSistema = 0;
     this.resultado = null;
     this.error = "";
-    
+
     if (this.sistema) {
       this.cotizadorService.getColocaciones().subscribe(
         data => this.colocaciones = data,
@@ -71,7 +71,6 @@ export class CotizadorComponent {
           this.colocaciones = [];
         }
       );
-      
       if (this.marca == 'RC') {
         this.cargarDatosRoyal();
       } else if (this.marca == 'FLEX') {

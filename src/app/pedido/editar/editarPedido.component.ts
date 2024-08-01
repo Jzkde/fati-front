@@ -13,20 +13,20 @@ import { PedidoService } from 'src/app/service/pedido.service';
 export class EditarPedidoComponent implements OnInit {
 
   pedido!: Pedido
-  id: number = 0 
-  fecha_pedido: String = ''
-  provedor: String = ''
-  via: String = ''
-  n_pedido: String = ''
-  n_factura: String = ''
-  n_remito: String = ''
+  id: number = 0
+  fecha_pedido: string = ''
+  provedor: string = ''
+  via: string = ''
+  n_pedido: string = ''
+  n_factura: string = ''
+  n_remito: string = ''
   monto: number = 0
   llego: boolean = false
-  fecha_llegada: String = ''
-  estado: String = ''
-  responsable: String = ''
-  clienteNombre: String = ''
-  observaciones: String = ''
+  fecha_llegada: string = ''
+  estado: string = ''
+  responsable: string = ''
+  clienteNombre: string = ''
+  observaciones: string = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -37,7 +37,24 @@ export class EditarPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.toastr.clear();
+    this.inicializarPedido();
+    this.id = this.activatedRoute.snapshot.params['id'];
+    this.pedidoService.uno(this.id).subscribe(
+      data => {
+        this.pedido = data;
+        console.log(data);
+      },
+      err => {
+        this.toastr.error(err.error, 'ERROR', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+        this.router.navigate(['/']);
+      }
+    );
+  }
 
+  inicializarPedido(): void {
     this.pedido = {
       id: 0,
       fecha_pedido: '',
@@ -53,23 +70,9 @@ export class EditarPedidoComponent implements OnInit {
       responsable: '',
       clienteNombre: '',
       observaciones: ""
-    }
-    const id = this.activatedRoute.snapshot.params['id'];
-    this.pedidoService.uno(id).subscribe(
-      data => {
-        this.pedido = data;
-        console.log(data);
-      },
-      err => {
-        this.toastr.error(err.error, 'ERROR', {
-          timeOut: 5000,
-          positionClass: 'toast-center-center'
-        });
-        this.router.navigate(['/'])
-
-      }
-    );
+    };
   }
+
   editar(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     this.pedidoService.editar(id, this.pedido).subscribe(
@@ -89,6 +92,7 @@ export class EditarPedidoComponent implements OnInit {
       }
     );
   }
+
   borrar(id: number): void {
     this.pedidoService.borrar(id).subscribe(
       response => {

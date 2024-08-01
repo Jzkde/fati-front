@@ -43,7 +43,6 @@
                                 [(ngModel)]="presupuesto.alto" required>
                         </div>
                     </div>
-
                 </div>
                 <div class="row mb-3">
                     <div class="col">
@@ -81,7 +80,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="row mb-3">
                     <div class="col">
                         <div class="form-group">
@@ -115,7 +113,8 @@
                                 Volver</button>
                         </td>
                         <td>
-                            <button class=" btn btn-danger" (click)="borrar(presupuesto.id!)" routerLink="/presupuesto/lista">
+                            <button class=" btn btn-danger" (click)="borrar(presupuesto.id!)"
+                                routerLink="/presupuesto/lista">
                                 <i class="fa-solid fa-eraser" style="color: #000000;"></i>
                                 Borrar </button>
                         </td>

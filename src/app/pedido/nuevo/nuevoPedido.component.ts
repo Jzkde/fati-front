@@ -11,19 +11,19 @@ import { Pedido } from 'src/app/models/pedido';
 })
 export class NuevoPedidoComponent implements OnInit {
 
-  fecha_pedido: String = ''
-  provedor: String = ''
-  via: String = ''
-  n_pedido: String = ''
-  n_factura: String = ''
-  n_remito: String = ''
+  fecha_pedido: string = ''
+  provedor: string = ''
+  via: string = ''
+  n_pedido: string = ''
+  n_factura: string = ''
+  n_remito: string = ''
   monto: number = 0
   llego: boolean = false
-  fecha_llegada: String = ''
-  estado: String = ''
-  responsable: String = ''
-  cliente: String = ''
-  observaciones: String = ''
+  fecha_llegada: string = ''
+  estado: string = ''
+  responsable: string = ''
+  cliente: string = ''
+  observaciones: string = ''
 
   constructor(
     private router: Router,
@@ -34,7 +34,8 @@ export class NuevoPedidoComponent implements OnInit {
 
   ngOnInit(): void {
     this.toastr.clear();
-   }
+  }
+
   crear(): void {
     const npedido = new Pedido(
       this.provedor,
@@ -61,6 +62,5 @@ export class NuevoPedidoComponent implements OnInit {
         });
       }
     )
-
   }
 }

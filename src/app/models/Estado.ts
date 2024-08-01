@@ -1,14 +1,10 @@
-export class Estado{
-    
-  
-    llego: String;
+export class Estado {
+
+    llego: string;
 
     constructor(
-     
-        llego: String
-    ){
-     
+        llego: string
+    ) {
         this.llego = llego
     }
-
 }

@@ -1,25 +1,20 @@
 export class Cliente {
 
     id?: number;
-    nombre: String;
-    apellido: String;
-    direccion: String;
-    telefono: String;
+    nombre: string;
+    apellido: string;
+    direccion: string;
+    telefono: string;
 
     constructor(
-
-        nombre: String,
-        apellido: String,
-        direccion: String,
-        telefono: String
-
+        nombre: string,
+        apellido: string,
+        direccion: string,
+        telefono: string
     ) {
-
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.telefono = telefono;
-
-
     }
 }

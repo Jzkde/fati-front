@@ -1,39 +1,35 @@
 export class Presupuesto {
 
     id?: number;
-    sistema: String;
+    sistema: string;
     ancho: number;
     alto: number;
-    comando: String;
-    apertura: String;
-    accesorios?: String;
-    ambiente?: String;
-    observaciones?: String;
-    clienteNombre: String;
+    comando: string;
+    apertura: string;
+    accesorios?: string;
+    ambiente?: string;
+    observaciones?: string;
+    clienteNombre: string;
 
     constructor(
-
-        sistema: String,
+        sistema: string,
         ancho: number,
         alto: number,
-        comando: String,
-        apertura: String,
-        clienteNombre: String,
-        accesorios?: String,
-        ambiente?: String,
-        observaciones?: String,
-
+        comando: string,
+        apertura: string,
+        clienteNombre: string,
+        accesorios?: string,
+        ambiente?: string,
+        observaciones?: string,
     ) {
-
         this.sistema = sistema;
         this.ancho = ancho;
         this.alto = alto;
         this.comando = comando;
         this.apertura = apertura;
-        this.accesorios =  accesorios
-        this.ambiente =  ambiente
-        this.observaciones =  observaciones
+        this.accesorios = accesorios
+        this.ambiente = ambiente
+        this.observaciones = observaciones
         this.clienteNombre = clienteNombre
-
     }
 }

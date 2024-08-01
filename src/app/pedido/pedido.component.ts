@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PedidoComponent implements OnInit {
 
-  llego: String = ''
+  llego: string = ''
   pedidos: Pedido[] = [];
   buscados: any[] = [];
 
@@ -39,6 +39,7 @@ export class PedidoComponent implements OnInit {
     private toastr: ToastrService,
   ) { }
 
+  alerts = this.buscados;
   fechaActual = Date.now()
 
   ngOnInit(): void {
@@ -62,7 +63,7 @@ export class PedidoComponent implements OnInit {
           const pasaron = Math.floor((this.fechaActual - fechapedido) / (1000 * 60 * 60 * 24))
           pedido.pasaron = pasaron
           if (pasaron > 20 && !pedido.llego) {
-            this.toastr.error('ID: '+pedido.id + ' - Para: ' + pedido.clienteNombre, 'Pasaron ' + pedido.pasaron + ' Dias desde el pedido', {
+            this.toastr.error('ID: ' + pedido.id + ' - Para: ' + pedido.clienteNombre, 'Pasaron ' + pedido.pasaron + ' Dias desde el pedido', {
               disableTimeOut: true,
               positionClass: 'toast-bottom-right',
             });
@@ -74,8 +75,6 @@ export class PedidoComponent implements OnInit {
       }
     );
   }
-
-  alerts = this.buscados;
 
   onClosed(dismissedAlert: any): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
@@ -97,10 +96,8 @@ export class PedidoComponent implements OnInit {
     this.filtro();
   }
 
-  actualizar(id: number, estado: String): void {
-    const nActualizar = new Estado(
-      this.llego = estado
-    );
+  actualizar(id: number, estado: string): void {
+    const nActualizar = new Estado(estado);
     this.pedidoService.actualizar(id, nActualizar).subscribe(
       data => {
         this.pedidos = data;

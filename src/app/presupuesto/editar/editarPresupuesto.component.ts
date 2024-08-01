@@ -52,15 +52,15 @@ export class EditarPresupuestoComponent implements OnInit {
       }
     );
   }
+
   editar(): void {
     const id = this.activatedRoute.snapshot.params['id'];
     this.presupuestoService.editar(id, this.presupuesto).subscribe(
       data => {
-        this.toastr.success('Pedido editado', 'OK', {
+        this.toastr.success('Presupuesto editado', 'OK', {
           timeOut: 2500,
           positionClass: 'toast-center-center'
         });
-
         this.router.navigate(['/presupuesto/lista'])
       },
       err => {
@@ -73,6 +73,7 @@ export class EditarPresupuestoComponent implements OnInit {
       }
     );
   }
+  
   borrar(id: number): void {
     this.presupuestoService.borrar(id).subscribe(
       response => {

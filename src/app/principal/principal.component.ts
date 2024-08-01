@@ -6,14 +6,12 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './principal.component.html',
   styleUrls: ['./principal.component.css']
 })
-export class PrincipalComponent implements OnInit{
+export class PrincipalComponent implements OnInit {
 
   constructor(
-        private toastr: ToastrService,
+    private toastr: ToastrService,
   ) { }
   ngOnInit(): void {
     this.toastr.clear();
-    
   }
-
 }

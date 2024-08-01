@@ -16,7 +16,7 @@ import { PresupuestoService } from 'src/app/service/presupuesto.service';
 })
 
 export class UnoComponent implements OnInit {
-  llego: String = ''
+  llego: string = ''
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -57,7 +57,7 @@ export class UnoComponent implements OnInit {
       },
     );
   }
-  actualizar(id: number, estado: String): void {
+  actualizar(id: number, estado: string): void {
     const nActualizar = new Estado(
       this.llego = estado
     );

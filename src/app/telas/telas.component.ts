@@ -30,8 +30,10 @@ export class TelasComponent {
   servs: any[] = []
   nuevoServ: any = {
     id: 0,
-    tipo: '', precio: 0
+    tipo: '',
+    precio: 0
   };
+
   porcen: number = 0;
   prod: any[] = []
 
@@ -43,6 +45,7 @@ export class TelasComponent {
   archivoSelec(event: any) {
     this.archivo = event.target.files[0];
   }
+
   carga() {
     if (this.archivo) {
       this.telasService.cargar(this.marca, this.archivo).subscribe(
@@ -57,7 +60,6 @@ export class TelasComponent {
         (error: string) => {
           this.message = error;
           console.log(this.message);
-
         }
       );
     } else {
@@ -68,6 +70,7 @@ export class TelasComponent {
       });
     }
   }
+
   agregar() {
     if (this.marca == "fati") {
       this.servs.push({ ...this.nuevoServ });
@@ -77,6 +80,7 @@ export class TelasComponent {
       this.nuevaTela = { id: 0, tela: '', precio: 0, esTela: false, sistema: "ROLLER" };
     }
   }
+
   esValido(): boolean {
     if (this.marca == 'fati') {
       return (this.servs.length > 0);
@@ -84,9 +88,9 @@ export class TelasComponent {
       return (this.telas.length > 0 && this.marca !== '');
     }
   }
+
   guardar() {
     this.prod = this.marca === 'fati' ? this.servs : this.telas;
-
     this.telasService.nuevo(this.marca, this.prod).subscribe(response => {
       this.servs = [];
       this.telas = [];
@@ -98,6 +102,7 @@ export class TelasComponent {
       console.error('Error saving data:', error);
     });
   }
+
   masivo() {
     if (this.porcen) {
       this.telasService.masivo(this.marca, this.porcen).subscribe(

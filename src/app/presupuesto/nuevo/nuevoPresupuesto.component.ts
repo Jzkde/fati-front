@@ -11,15 +11,15 @@ import { PresupuestoService } from 'src/app/service/presupuesto.service';
 })
 export class NuevoPresupuestoComponent implements OnInit {
 
-  sistema: String = '';
+  sistema: string = '';
   ancho: number = 0;
   alto: number = 0;
-  comando: String = 'NO_POSEE';
-  apertura: String = 'NO_POSEE';
-  cliente: String = ""
-  accesorios: String = '';
-  ambiente: String = '';
-  observaciones: String = '';
+  comando: string = 'NO_POSEE';
+  apertura: string = 'NO_POSEE';
+  cliente: string = ""
+  accesorios: string = '';
+  ambiente: string = '';
+  observaciones: string = '';
 
   constructor(
     private router: Router,
@@ -31,6 +31,7 @@ export class NuevoPresupuestoComponent implements OnInit {
   ngOnInit(): void {
     this.toastr.clear();
   }
+  
   crear(): void {
     const npresup = new Presupuesto(
       this.sistema,
@@ -43,7 +44,6 @@ export class NuevoPresupuestoComponent implements OnInit {
       this.ambiente,
       this.observaciones,
     );
-    const id = this.activatedRoute.snapshot.params['id'];
     this.presupuestoService.nuevo(npresup).subscribe(
       data => {
         this.toastr.success('Presupuesto Creado', 'OK', {

@@ -44,13 +44,11 @@ export class EditarTelasComponent {
 
   ngOnInit(): void {
     this.toastr.clear();
-
     this.serv = {
       id: 0,
       tipo: '',
       precio: 0
     }
-
     this.tela = {
       id: 0,
       tela: '',
@@ -59,6 +57,7 @@ export class EditarTelasComponent {
       sistema: 'ROLLER'
     }
   }
+
   filtro(): void {
     if (this.marca == 'fati') {
       this.getFati();
@@ -76,6 +75,7 @@ export class EditarTelasComponent {
       )
     }
   }
+
   filtroUno(id: number): void {
     this.telasService.filtroUno(this.marca, id).subscribe(
       data => {
@@ -87,12 +87,10 @@ export class EditarTelasComponent {
       }
     )
   }
+
   editar(id: number) {
-
     this.prod = this.marca === 'fati' ? this.serv : this.tela;
-
     this.telasService.editar(this.marca, id, this.prod).subscribe(
-
       response => {
         this.tela = { id: 0, tela: '', precio: 0, esTela: false, sistema: 'ROLLER' };
         this.busqueda.tela = ""
@@ -111,6 +109,7 @@ export class EditarTelasComponent {
       }
     );
   }
+
   borrar(id: number): void {
     this.telasService.borrar(this.marca, id).subscribe(
       response => {
@@ -130,6 +129,7 @@ export class EditarTelasComponent {
       }
     );
   }
+
   getFati(): void {
     this.telasService.getFati(this.marca).subscribe(
       data => {

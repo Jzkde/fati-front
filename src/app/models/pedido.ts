@@ -1,33 +1,31 @@
 export class Pedido {
 
     id?: number;
-    fecha_pedido?: String;
-    provedor: String;
-    via: String;
-    n_pedido: String;
-    n_factura: String;
-    n_remito: String;
+    fecha_pedido?: string;
+    provedor: string;
+    via: string;
+    n_pedido: string;
+    n_factura: string;
+    n_remito: string;
     monto: number;
     llego?: boolean;
-    fecha_llegada?: String;
-    estado?: String;
-    responsable: String;
-    observaciones?: String;
-    clienteNombre: String;
+    fecha_llegada?: string;
+    estado?: string;
+    responsable: string;
+    observaciones?: string;
+    clienteNombre: string;
 
     constructor(
-
-        provedor: String,
-        via: String,
-        n_pedido: String,
-        n_factura: String,
-        n_remito: String,
+        provedor: string,
+        via: string,
+        n_pedido: string,
+        n_factura: string,
+        n_remito: string,
         monto: number,
-        responsable: String,
-        clienteNombre: String,
-        observaciones?: String
+        responsable: string,
+        clienteNombre: string,
+        observaciones?: string
     ) {
-
         this.provedor = provedor;
         this.via = via;
         this.n_pedido = n_pedido;
@@ -37,7 +35,5 @@ export class Pedido {
         this.clienteNombre = clienteNombre;
         this.responsable = responsable;
         this.observaciones = observaciones;
-
-
     }
 }

@@ -11,10 +11,10 @@ import { ClienteService } from 'src/app/service/cliente.service';
 })
 export class NuevoClienteComponent implements OnInit {
 
-  nombre: String = ''
-  apellido: String = ''
-  direccion: String = ''
-  telefono: String = ''
+  nombre: string = ''
+  apellido: string = ''
+  direccion: string = ''
+  telefono: string = ''
 
   ngOnInit(): void {
     this.toastr.clear();

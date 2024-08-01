@@ -18,7 +18,6 @@ export class CotizadorService {
       .set('alto', alto.toString())
       .set('ancho', ancho.toString())
       .set('sistema', sistema);
-
     return this.http.get(`${this.apiURL}flex/cotizar`, { params });
   }
 
@@ -28,7 +27,6 @@ export class CotizadorService {
       .set('alto', alto.toString())
       .set('ancho', ancho.toString())
       .set('sistema', sistema);
-
     return this.http.get(`${this.apiURL}royal/cotizar`, { params });
   }
 

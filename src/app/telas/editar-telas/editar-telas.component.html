@@ -1,217 +1,216 @@
-<div class="d-flex flex-column align-items-center m-4">
-    <h2>Seleccione el Proveedor</h2>
-    <div class="form-check">
-        <input type="radio" class="btn-check" name="marca" id="flex" [(ngModel)]="marca" value="flex"
-            autocomplete="off">
-        <label class="btn btn-outline-dark m-2" for="flex">Flex Color</label>
-        <input type="radio" class="btn-check" name="marca" id="royal" [(ngModel)]="marca" value="royal"
-            autocomplete="off">
-        <label class="btn btn-outline-dark" for="royal">Royal Cort</label>
-        <input type="radio" class="btn-check" name="marca" id="fati" [(ngModel)]="marca" value="fati"
-            autocomplete="off">
-        <label class="btn btn-outline-dark m-2" for="fati">Fati</label>
+<div>
+    <div class="d-flex flex-column align-items-center m-4">
+        <h2>Seleccione el Proveedor</h2>
+        <div class="form-check">
+            <input type="radio" class="btn-check" name="marca" id="flex" [(ngModel)]="marca" value="flex"
+                autocomplete="off">
+            <label class="btn btn-outline-dark m-2" for="flex">Flex Color</label>
+            <input type="radio" class="btn-check" name="marca" id="royal" [(ngModel)]="marca" value="royal"
+                autocomplete="off">
+            <label class="btn btn-outline-dark" for="royal">Royal Cort</label>
+            <input type="radio" class="btn-check" name="marca" id="fati" [(ngModel)]="marca" value="fati"
+                autocomplete="off">
+            <label class="btn btn-outline-dark m-2" for="fati">Fati</label>
+        </div>
+        <button class="btn btn-success" (click)="filtro()" *ngIf="marca !='fati'"
+            [disabled]="marca == '' ">Buscar</button>
+        <button class="btn btn-success" (click)="getFati()" *ngIf="marca =='fati'">Buscar</button>
     </div>
-    <button class="btn btn-success" (click)="filtro()" *ngIf="marca !='fati'" [disabled]="marca == '' ">Buscar</button>
-    <button class="btn btn-success" (click)="getFati()" *ngIf="marca =='fati'">Buscar</button>
-</div>
-
-
-<div class="pedidos">
-    <div class=" mt-5">
-        <h1 class="text-center">Telas, Sistemas y Servicios </h1>
-        <div class="container mb-3">
-            <form class="mb-5">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-grup">
-                            <label for="tela"><b>Nombre</b></label>
-                            <div class="input-group">
-                                <input #provedor type="text" class="form-control" name="tela" id="tela"
-                                    [(ngModel)]="busqueda.tela" (input)="filtro()"
-                                    [disabled]="marca == '' || marca == 'fati' ">
+    <div class="pedidos">
+        <div class=" mt-5">
+            <h1 class="text-center">Telas, Sistemas y Servicios </h1>
+            <div class="container mb-3">
+                <form class="mb-5">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-grup">
+                                <label for="tela"><b>Nombre</b></label>
+                                <div class="input-group">
+                                    <input #provedor type="text" class="form-control" name="tela" id="tela"
+                                        [(ngModel)]="busqueda.tela" (input)="filtro()"
+                                        [disabled]="marca == '' || marca == 'fati' ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="sistema"><b>Sistema</b></label>
+                                <select class="form-control" name="sistema" id="sistema" [(ngModel)]="busqueda.sistema"
+                                    (change)="filtro()" [disabled]="marca == '' || marca == 'fati'  ">
+                                    <option value="">Todos</option>
+                                    <option value="ROLLER">Roller</option>
+                                    <option value="VERTICALES">Vertical</option>
+                                    <option value="PERSIANA">Persiana</option>
+                                    <option value="DUBAI">Dubai</option>
+                                    <option value="ORIENTAL">Oriental</option>
+                                    <option value="ROMANA">Romana</option>
+                                    <option value="ZEBRA">Zebra</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="sistema"><b>Sistema</b></label>
-                            <select class="form-control" name="sistema" id="sistema" [(ngModel)]="busqueda.sistema"
-                                (change)="filtro()" [disabled]="marca == '' || marca == 'fati'  ">
-                                <option value="">Todos</option>
-                                <option value="ROLLER">Roller</option>
-                                <option value="VERTICALES">Vertical</option>
-                                <option value="PERSIANA">Persiana</option>
-                                <option value="DUBAI">Dubai</option>
-                                <option value="ORIENTAL">Oriental</option>
-                                <option value="ROMANA">Romana</option>
-                                <option value="ZEBRA">Zebra</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <table *ngIf="marca !='fati'" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Es Tela?</th>
-                        <th scope="col">Sistema</th>
-                        <th scope="col">Editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let tela of buscados">
-                        <td>{{tela.id}}</td>
-                        <td>{{tela.tela}}</td>
-                        <td>{{tela.precio | currency }}</td>
-                        <td>{{ tela.esTela ? 'Tela' : 'Sistema' }}</td>
-                        <td>{{tela.sistema}}</td>
-                        <td> <button class="btn btn-outline-success" (click)="lgModal.show()"
-                                (click)="filtroUno(tela.id)" tooltip="Editar"> <i class="fa-solid fa-pencil"
-                                    style="color: #000000;"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <table *ngIf="marca =='fati'" class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Editar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let serv of buscados">
-                        <td>{{serv.id}}</td>
-                        <td>{{serv.tipo}}</td>
-                        <td>{{serv.precio | currency }}</td>
-                        <td> <button class="btn btn-outline-success" (click)="lgModal.show()"
-                                (click)="filtroUno(serv.id)" tooltip="Editar"> <i class="fa-solid fa-pencil"
-                                    style="color: #000000;"></i>
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
+                </form>
+                <table *ngIf="marca !='fati'" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Es Tela?</th>
+                            <th scope="col">Sistema</th>
+                            <th scope="col">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tela of buscados">
+                            <td>{{tela.id}}</td>
+                            <td>{{tela.tela}}</td>
+                            <td>{{tela.precio | currency }}</td>
+                            <td>{{ tela.esTela ? 'Tela' : 'Sistema' }}</td>
+                            <td>{{tela.sistema}}</td>
+                            <td> <button class="btn btn-outline-success" (click)="lgModal.show()"
+                                    (click)="filtroUno(tela.id)" tooltip="Editar"> <i class="fa-solid fa-pencil"
+                                        style="color: #000000;"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table *ngIf="marca =='fati'" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Editar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let serv of buscados">
+                            <td>{{serv.id}}</td>
+                            <td>{{serv.tipo}}</td>
+                            <td>{{serv.precio | currency }}</td>
+                            <td> <button class="btn btn-outline-success" (click)="lgModal.show()"
+                                    (click)="filtroUno(serv.id)" tooltip="Editar"> <i class="fa-solid fa-pencil"
+                                        style="color: #000000;"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+    <div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+        aria-labelledby="dialog-sizes-name1">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 id="dialog-sizes-name1" class="modal-title pull-left">Editar</h4>
+                    <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()"
+                        aria-label="Close">
+                        <span aria-hidden="true" class="visually-hidden">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="busqueda pt-4 pb-4">
+                        <div class="container mb-5">
+                            <form *ngIf="marca !='fati'">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="form-grup">
+                                            <label for="nombre"><b>Nombre</b></label>
+                                            <div class="input-group">
+                                                <input #nombre type="text" class="form-control" name="nombre"
+                                                    id="nombre" [(ngModel)]="tela.tela" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-grup">
+                                            <label for="precio"><b>Precio</b></label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="precio" id="precio"
+                                                    [(ngModel)]="tela.precio " required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="form-grup">
+                                            <label for="estela"><b>Es Tela?</b></label>
+                                            <div class="input-group">
 
-<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-sizes-name1">
-    <div class="modal-dialog modal-xl">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 id="dialog-sizes-name1" class="modal-title pull-left">Editar</h4>
-                <button type="button" class="btn-close close pull-right" (click)="lgModal.hide()" aria-label="Close">
-                    <span aria-hidden="true" class="visually-hidden">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="busqueda pt-4 pb-4">
-                    <div class="container mb-5">
-                        <form *ngIf="marca !='fati'">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="form-grup">
-                                        <label for="nombre"><b>Nombre</b></label>
-                                        <div class="input-group">
-                                            <input #nombre type="text" class="form-control" name="nombre" id="nombre"
-                                                [(ngModel)]="tela.tela" required>
+                                                <input type="checkbox" class="btn-check" id="estela"
+                                                    [(ngModel)]="tela.esTela" value="true" name="estela"
+                                                    autocomplete="off">
+                                                <label class="btn btn-outline-dark" for="estela">Es Tela</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="sistema"><b>Sistema</b></label>
+                                            <select class="form-control" name="sistema" id="sistema"
+                                                [(ngModel)]="tela.sistema" required>
+                                                <option value="ROLLER">Roller</option>
+                                                <option value="VERTICALES">Vertical</option>
+                                                <option value="PERSIANA">Persiana</option>
+                                                <option value="DUBAI">Dubai</option>
+                                                <option value="ORIENTAL">Oriental</option>
+                                                <option value="ROMANA">Romana</option>
+                                                <option value="ZEBRA">Zebra</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3">
-                                    <div class="form-grup">
-                                        <label for="precio"><b>Precio</b></label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="precio" id="precio"
-                                                [(ngModel)]="tela.precio " required>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class=" btn btn-outline-success mt-3 " (click)="editar(tela.id)"
+                                            (click)="lgModal.hide()"><i class="fa-solid fa-floppy-disk"
+                                                style="color: #000000;"></i>
+                                            Guardar </button>
+                                        <button class=" btn btn-outline-danger mt-3 ms-4" (click)="borrar(tela.id)"
+                                            (click)="lgModal.hide()">
+                                            <i class="fa-solid fa-eraser" style="color: #000000;"></i>
+                                            Borrar </button>
+                                    </div>
+                                </div>
+                            </form>
+                            <form *ngIf="marca =='fati'">
+                                <div class="row">
+                                    <div class="col-3">
+                                        <div class="form-grup">
+                                            <label for="nombre"><b>Nombre</b></label>
+                                            <div class="input-group">
+                                                <input #nombre type="text" class="form-control" name="nombre"
+                                                    id="nombre" [(ngModel)]="serv.tipo" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-3">
+                                        <div class="form-grup">
+                                            <label for="precio"><b>Precio</b></label>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" name="precio" id="precio"
+                                                    [(ngModel)]="serv.precio " required>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-2">
-                                    <div class="form-grup">
-                                        <label for="estela"><b>Es Tela?</b></label>
-                                        <div class="input-group">
-
-                                            <input type="checkbox" class="btn-check" id="estela"
-                                                [(ngModel)]="tela.esTela" value="true" name="estela" autocomplete="off">
-                                            <label class="btn btn-outline-dark" for="estela">Es Tela</label>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <button class=" btn btn-outline-success mt-3 " (click)="editar(serv.id)"
+                                            (click)="lgModal.hide()"><i class="fa-solid fa-floppy-disk"
+                                                style="color: #000000;"></i>
+                                            Guardar </button>
+                                        <button class=" btn btn-outline-danger mt-3 ms-4" (click)="borrar(serv.id)"
+                                            (click)="lgModal.hide()">
+                                            <i class="fa-solid fa-eraser" style="color: #000000;"></i>
+                                            Borrar </button>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <div class="form-group">
-                                        <label for="sistema"><b>Sistema</b></label>
-                                        <select class="form-control" name="sistema" id="sistema"
-                                            [(ngModel)]="tela.sistema" required>
-                                            <option value="ROLLER">Roller</option>
-                                            <option value="VERTICALES">Vertical</option>
-                                            <option value="PERSIANA">Persiana</option>
-                                            <option value="DUBAI">Dubai</option>
-                                            <option value="ORIENTAL">Oriental</option>
-                                            <option value="ROMANA">Romana</option>
-                                            <option value="ZEBRA">Zebra</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button class=" btn btn-outline-success mt-3 " (click)="editar(tela.id)"
-                                        (click)="lgModal.hide()"><i class="fa-solid fa-floppy-disk"
-                                            style="color: #000000;"></i>
-                                        Guardar </button>
-                                    <button class=" btn btn-outline-danger mt-3 ms-4" (click)="borrar(tela.id)"
-                                        (click)="lgModal.hide()">
-                                        <i class="fa-solid fa-eraser" style="color: #000000;"></i>
-                                        Borrar </button>
-                                </div>
-                            </div>
-                        </form>
-
-                        <form *ngIf="marca =='fati'">
-                            <div class="row">
-                                <div class="col-3">
-                                    <div class="form-grup">
-                                        <label for="nombre"><b>Nombre</b></label>
-                                        <div class="input-group">
-                                            <input #nombre type="text" class="form-control" name="nombre" id="nombre"
-                                                [(ngModel)]="serv.tipo" required>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-3">
-                                    <div class="form-grup">
-                                        <label for="precio"><b>Precio</b></label>
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" name="precio" id="precio"
-                                                [(ngModel)]="serv.precio " required>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <button class=" btn btn-outline-success mt-3 " (click)="editar(serv.id)"
-                                        (click)="lgModal.hide()"><i class="fa-solid fa-floppy-disk"
-                                            style="color: #000000;"></i>
-                                        Guardar </button>
-                                    <button class=" btn btn-outline-danger mt-3 ms-4" (click)="borrar(serv.id)"
-                                        (click)="lgModal.hide()">
-                                        <i class="fa-solid fa-eraser" style="color: #000000;"></i>
-                                        Borrar </button>
-                                </div>
-                            </div>
-                        </form>
-
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>

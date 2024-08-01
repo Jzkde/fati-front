@@ -53,7 +53,7 @@ export class PresupuestoComponent implements OnInit {
         this.buscados = data;
       },
       err => {
-        console.log(err);
+        console.error('Error al filtrar presupuestos:', err);
       }
     );
   }
@@ -78,15 +78,14 @@ export class PresupuestoComponent implements OnInit {
     this.presupuestoService.lista().subscribe(
       data => {
         this.presupuestos = data;
-
         console.log(data);
       },
       err => {
         console.log(err);
       }
-
     );
   }
+
   onPresupuestoSelect(presupuesto: Presupuesto, event: any): void {
     if (event.target.checked) {
       this.selectedPresupuestos.push(presupuesto);
@@ -97,22 +96,23 @@ export class PresupuestoComponent implements OnInit {
       }
     }
   }
+
   generarYDescargarPdf() {
     this.presupuestoService.generarPdf(this.selectedPresupuestos).subscribe((response: Blob) => {
       // Obtener el tipo de contenido desde la respuesta
       const contentType = response.type;
-  
+
       // Determinar el nombre del archivo en función del tipo de contenido
-      let fileName = 'presupuesto.zip';
+      let archivoN = 'presupuesto.zip';
       if (contentType.includes('pdf')) {
-        fileName = 'presupuesto.pdf';
+        archivoN = 'presupuesto.pdf';
       }
 
       // Crear un enlace temporal para descargar el archivo
       const url = window.URL.createObjectURL(response);
       const a = document.createElement('a');
       a.href = url;
-      a.download = fileName;
+      a.download = archivoN;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);

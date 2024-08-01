@@ -19,7 +19,6 @@ export class TelasService {
   cargar(url: string, file: File): Observable<string> {
     const formData: FormData = new FormData();
     formData.append('file', file, file.name);
-    console.log(this.apiURL + url);
     return this.httpClient.post(this.apiURL + url, formData, { responseType: 'text' });
   }
 
@@ -29,7 +28,7 @@ export class TelasService {
 
   masivo(url: string, porcentaje: number): Observable<any> {
     const params = new HttpParams().set('porcentaje', porcentaje.toString());
-    return this.httpClient.put(this.apiTelas + url + "/masivo", {}, { params, responseType: 'text' });
+    return this.httpClient.put(this.apiTelas + url + '/masivo', { params, responseType: 'text' });
   }
 
   filtro(url: string, busqueda: Busqueda): Observable<any[]> {
@@ -37,7 +36,6 @@ export class TelasService {
   }
 
   filtroUno(url: string, id: number): Observable<any[]> {
-    console.log(this.apiTelas + url + `/lista/${id}`);
     return this.httpClient.get<any[]>(this.apiTelas + url + `/lista/${id}`);
   }
 
@@ -48,8 +46,8 @@ export class TelasService {
   borrar(url: string, id: number): Observable<any> {
     return this.httpClient.delete(this.apiTelas + url + `/borrar/${id}`, { responseType: 'text' });
   }
-  
+
   getFati(url: string): Observable<any[]> {
-    return this.httpClient.get<any[]>(this.apiTelas + url + `/lista`);
+    return this.httpClient.get<any[]>(this.apiTelas + url + '/lista');
   }
 }
