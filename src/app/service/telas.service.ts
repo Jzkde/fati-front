@@ -10,7 +10,6 @@ import { Busqueda } from '../models/busqueda';
 })
 export class TelasService {
 
-
   private apiURL: string = API.URL + "db/carga/"
   private apiTelas: string = API.URL
 

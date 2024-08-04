@@ -10,6 +10,7 @@ export class Presupuesto {
     ambiente?: string;
     observaciones?: string;
     clienteNombre: string;
+    fecha?: string;
 
     constructor(
         sistema: string,

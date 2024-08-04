@@ -10,10 +10,13 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PresupuestoComponent implements OnInit {
 
-  presupuestos: Presupuesto[] = [];
   buscados: any[] = [];
   selectedPresupuestos: Presupuesto[] = [];
+  presupuestoAgrupados: { cliente: string, items: Presupuesto[] }[] = [];
 
+
+  tel: string = ''
+  direcc: string = ''
 
   busqueda = {
     pasaron: '',
@@ -38,9 +41,11 @@ export class PresupuestoComponent implements OnInit {
     private presupuestoService: PresupuestoService,
     private toastr: ToastrService,
   ) { }
+
   ngOnInit(): void {
     this.toastr.clear();
     this.filtro();
+
   }
 
   volver(): void {
@@ -51,6 +56,7 @@ export class PresupuestoComponent implements OnInit {
     this.presupuestoService.filtro(this.busqueda).subscribe(
       data => {
         this.buscados = data;
+        this.presupuestosCliente();
       },
       err => {
         console.error('Error al filtrar presupuestos:', err);
@@ -59,31 +65,8 @@ export class PresupuestoComponent implements OnInit {
   }
 
   borrarFiltros(): void {
-    this.busqueda.fecha_pedidoDesde = '',
-      this.busqueda.fecha_pedidoHasta = '',
-      this.busqueda.provedor = '',
-      this.busqueda.via = '',
-      this.busqueda.n_pedido = '',
-      this.busqueda.n_factura = '',
-      this.busqueda.n_remito = '',
-      this.busqueda.llego = '',
-      this.busqueda.fecha_llegada = '',
-      this.busqueda.estado = '',
       this.busqueda.clienteNombre = '',
-      this.busqueda.responsable = ''
     this.filtro();
-  }
-
-  lista(): void {
-    this.presupuestoService.lista().subscribe(
-      data => {
-        this.presupuestos = data;
-        console.log(data);
-      },
-      err => {
-        console.log(err);
-      }
-    );
   }
 
   onPresupuestoSelect(presupuesto: Presupuesto, event: any): void {
@@ -98,7 +81,7 @@ export class PresupuestoComponent implements OnInit {
   }
 
   generarYDescargarPdf() {
-    this.presupuestoService.generarPdf(this.selectedPresupuestos).subscribe((response: Blob) => {
+    this.presupuestoService.generarPdf(this.tel, this.direcc, this.selectedPresupuestos).subscribe((response: Blob) => {
       // Obtener el tipo de contenido desde la respuesta
       const contentType = response.type;
 
@@ -117,7 +100,22 @@ export class PresupuestoComponent implements OnInit {
       a.click();
       window.URL.revokeObjectURL(url);
     }, error => {
-      console.error('Error al generar el PDF:', error);
+      this.toastr.error("Los clientes NO coinciden", 'ERROR', {
+        timeOut: 5000,
+        positionClass: 'toast-center-center'
+      });
     });
+  }
+
+   presupuestosCliente(): void {
+    const agrupados = new Map<string, Presupuesto[]>();
+    this.buscados.forEach(presupuesto => {
+      const cliente = presupuesto.clienteNombre;
+      if (!agrupados.has(cliente)) {
+        agrupados.set(cliente, []);
+      }
+      agrupados.get(cliente)?.push(presupuesto);
+    });
+    this.presupuestoAgrupados = Array.from(agrupados, ([cliente, items]) => ({ cliente, items }));
   }
 }

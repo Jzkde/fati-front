@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Presupuesto } from '../models/presupuesto';
@@ -42,18 +42,22 @@ export class PresupuestoService {
     return this.httpClient.delete(this.apiURL + `borrar/${id}`, { responseType: 'text' });
   }
 
-  generarPdf(presupuestos: any[]): Observable<Blob> {
+  generarPdf(tel: string, direcc: string, presupuestos: any[]): Observable<Blob> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+    const params = new HttpParams()
+    .set('tel', tel)
+    .set('direcc', direcc)
     return this.httpClient.post(this.apiURL + 'pdf', presupuestos, {
       headers,
-      responseType: 'blob'
+      responseType: 'blob',
+      params
     });
   }
 
-  descargarPdf(presupuestos: any[]): void {
-    this.generarPdf(presupuestos).subscribe(blob => {
+  descargarPdf(tel: string, direcc: string, presupuestos: any[]): void {
+    this.generarPdf(tel, direcc, presupuestos).subscribe(blob => {
       const filename = 'presupuesto.zip';
       saveAs(blob, filename);
     });

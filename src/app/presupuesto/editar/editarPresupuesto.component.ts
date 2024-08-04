@@ -34,13 +34,13 @@ export class EditarPresupuestoComponent implements OnInit {
       accesorios: '',
       ambiente: '',
       observaciones: '',
+      fecha: ''
     }
 
     const id = this.activatedRoute.snapshot.params['id'];
     this.presupuestoService.uno(id).subscribe(
       data => {
         this.presupuesto = data;
-        console.log(data);
       },
       err => {
         this.toastr.error(err.error, 'ERROR', {
@@ -73,7 +73,7 @@ export class EditarPresupuestoComponent implements OnInit {
       }
     );
   }
-  
+
   borrar(id: number): void {
     this.presupuestoService.borrar(id).subscribe(
       response => {
