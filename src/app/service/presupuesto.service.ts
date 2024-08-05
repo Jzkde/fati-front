@@ -62,6 +62,10 @@ export class PresupuestoService {
       saveAs(blob, filename);
     });
   }
+
+  comprar(id: number): Observable<any> {
+    return this.httpClient.get(this.apiURL + `actualizar/${id}`);
+  }
 }
 
 function saveAs(blob: Blob, archivoN: string) {

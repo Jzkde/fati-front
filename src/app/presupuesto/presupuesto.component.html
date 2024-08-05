@@ -1,7 +1,7 @@
 <div>
     <div class="presupuestos">
         <div class=" mt-3">
-            <h1 class="text-center">Presupuestos <a class="btn btn-outline-success" routerLink="/presupuesto/nuevo"
+            <h1 class="text-center">Medidas <a class="btn btn-outline-success" routerLink="/presupuesto/nuevo"
                     tooltip="Nuevo Presuuesto">
                     +</a></h1>
             <div class="container mb-3">
@@ -26,13 +26,17 @@
                                         <th scope="col">Ambiente</th>
                                         <th scope="col">Observaciones</th>
                                         <th scope="col">Fecha</th>
+                                        <th scope="col">Encargar</th>
                                         <th scope="col">Ediar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let presupuesto of group.items">
+                                    <tr *ngFor="let presupuesto of group.items"
+                                        [ngClass]="{'table-danger': presupuesto.viejo}">
                                         <td>
-                                            <input type="checkbox" (change)="onPresupuestoSelect(presupuesto, $event)">
+                                            <input type="checkbox"
+                                                name="{{presupuesto.id}}+{{presupuesto.clienteNombre}}"
+                                                (change)="onPresupuestoSelect(presupuesto, $event)">
                                         </td>
                                         <td>{{presupuesto.sistema}}</td>
                                         <td>{{presupuesto.ancho}}</td>
@@ -43,9 +47,19 @@
                                         <td>{{presupuesto.ambiente}}</td>
                                         <td>{{presupuesto.observaciones}}</td>
                                         <td>{{presupuesto.fecha}}</td>
+                                        <td>
+                                            <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
+                                                (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista">
+                                                <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
+                                            </button>
+                                            <button *ngIf="!presupuesto.comprado" class=" btn btn-outline-primary"
+                                                (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista">
+                                                <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
+                                            </button>
+                                        </td>
                                         <td> <button class="btn btn-outline-success"
                                                 routerLink="/presupuesto/editar/{{presupuesto.id}}"
-                                                tooltip="Editar Presupuesto">
+                                                tooltip="Editar Medidas">
                                                 <i class="fa-solid fa-pencil" style="color: #000000;"></i>
                                             </button>
                                         </td>

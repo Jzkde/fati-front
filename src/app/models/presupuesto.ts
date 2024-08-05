@@ -11,6 +11,8 @@ export class Presupuesto {
     observaciones?: string;
     clienteNombre: string;
     fecha?: string;
+    viejo?: string;
+    comprado?: string;
 
     constructor(
         sistema: string,

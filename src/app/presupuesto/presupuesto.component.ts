@@ -35,6 +35,8 @@ export class PresupuestoComponent implements OnInit {
     tela: '',
     estela: 'false',
     sistema: '',
+    viejo: 'false',
+    comprado: 'false'
   };
 
   constructor(
@@ -57,6 +59,7 @@ export class PresupuestoComponent implements OnInit {
       data => {
         this.buscados = data;
         this.presupuestosCliente();
+        this.resetfiltros()
       },
       err => {
         console.error('Error al filtrar presupuestos:', err);
@@ -66,9 +69,15 @@ export class PresupuestoComponent implements OnInit {
 
   borrarFiltros(): void {
       this.busqueda.clienteNombre = '',
+      this.busqueda.comprado = '',
+      this.busqueda.viejo = ''
     this.filtro();
   }
 
+  resetfiltros(): void {
+       this.busqueda.comprado = 'false',
+      this.busqueda.viejo = 'false'
+  }
   onPresupuestoSelect(presupuesto: Presupuesto, event: any): void {
     if (event.target.checked) {
       this.selectedPresupuestos.push(presupuesto);
@@ -117,5 +126,24 @@ export class PresupuestoComponent implements OnInit {
       agrupados.get(cliente)?.push(presupuesto);
     });
     this.presupuestoAgrupados = Array.from(agrupados, ([cliente, items]) => ({ cliente, items }));
+  }
+
+  comprar(id: number): void {
+    this.presupuestoService.comprar(id).subscribe(
+      response => {
+        this.toastr.success("PRESUPUESTO Cortina Encargada", 'OK', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      },
+      error => {
+        console.error('Error al eliminar:', error);
+        this.toastr.error("No se pudo Encargar", 'ERROR', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      }
+    );
+    this.filtro()
   }
 }
