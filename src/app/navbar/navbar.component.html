@@ -5,12 +5,8 @@
         <button mat-menu-item routerLink="pedido/lista">Lista</button>
         <button mat-menu-item routerLink="pedido/nuevo">Nuevo</button>
     </mat-menu>
-
-    <button mat-button [matMenuTriggerFor]="menu3" class="btn btn-outline-success">Medidas</button>
-    <mat-menu #menu3="matMenu">
-        <button mat-menu-item routerLink="presupuesto/lista">Lista</button>
-        <button mat-menu-item routerLink="presupuesto/nuevo">Nuevo</button>
-    </mat-menu>
+    <button mat-button routerLink="confeccion/lista">Confecciones</button>
+    <button mat-button routerLink="presupuesto/lista">Medidas</button>
     <button mat-button routerLink="cotizador">Cotizar</button>
     <button mat-button [matMenuTriggerFor]="menu4" class="btn btn-outline-success">Productos</button>
     <mat-menu #menu4="matMenu">

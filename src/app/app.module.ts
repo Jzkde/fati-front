@@ -34,6 +34,9 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 import { CotizadorComponent } from './cotizador/cotizador.component';
 import { TelasComponent } from './telas/telas.component';
 import { EditarTelasComponent } from './telas/editar-telas/editar-telas.component';
+import { ConfeccionComponent } from './confeccion/confeccion.component';
+import { NuevaConfeccionComponent } from './confeccion/nueva-confeccion/nueva-confeccion.component';
+import { EditarConfeccionComponent } from './confeccion/editar-confeccion/editar-confeccion.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,9 @@ import { EditarTelasComponent } from './telas/editar-telas/editar-telas.componen
     CotizadorComponent,
     TelasComponent,
     EditarTelasComponent,
+    ConfeccionComponent,
+    NuevaConfeccionComponent,
+    EditarConfeccionComponent,
   ],
   imports: [
     BrowserModule,

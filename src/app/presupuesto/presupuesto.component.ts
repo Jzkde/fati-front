@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Presupuesto } from '../models/presupuesto';
 import { PresupuestoService } from '../service/presupuesto.service';
 import { ToastrService } from 'ngx-toastr';
+import { NavigationExtras, Router } from '@angular/router';
+import { ConfeccionService } from '../service/confeccion.service';
 
 @Component({
   selector: 'app-presupuesto',
@@ -41,7 +43,9 @@ export class PresupuestoComponent implements OnInit {
 
   constructor(
     private presupuestoService: PresupuestoService,
+    private confeccionService: ConfeccionService,
     private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -68,16 +72,17 @@ export class PresupuestoComponent implements OnInit {
   }
 
   borrarFiltros(): void {
-      this.busqueda.clienteNombre = '',
+    this.busqueda.clienteNombre = '',
       this.busqueda.comprado = '',
       this.busqueda.viejo = ''
     this.filtro();
   }
 
   resetfiltros(): void {
-       this.busqueda.comprado = 'false',
+    this.busqueda.comprado = 'false',
       this.busqueda.viejo = 'false'
   }
+
   onPresupuestoSelect(presupuesto: Presupuesto, event: any): void {
     if (event.target.checked) {
       this.selectedPresupuestos.push(presupuesto);
@@ -87,6 +92,16 @@ export class PresupuestoComponent implements OnInit {
         this.selectedPresupuestos.splice(index, 1);
       }
     }
+  }
+
+  enviarACotizador(presupuesto: Presupuesto): void {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        ancho: presupuesto.ancho,
+        alto: presupuesto.alto
+      }
+    };
+    this.router.navigate(['/cotizador'], navigationExtras);
   }
 
   generarYDescargarPdf() {
@@ -116,7 +131,7 @@ export class PresupuestoComponent implements OnInit {
     });
   }
 
-   presupuestosCliente(): void {
+  presupuestosCliente(): void {
     const agrupados = new Map<string, Presupuesto[]>();
     this.buscados.forEach(presupuesto => {
       const cliente = presupuesto.clienteNombre;
@@ -135,6 +150,22 @@ export class PresupuestoComponent implements OnInit {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
+
+        const presupuesto = this.buscados.find(p => p.id === id);
+        console.log(presupuesto);
+
+        if (presupuesto && presupuesto.sistema === 'TELA'&& presupuesto.comprado == false) {
+          this.confeccionService.mover(presupuesto).subscribe(
+            response => { },
+            error => {
+              console.error('Error al encargar tela:', error);
+              this.toastr.error("No se pudo Encargar la Tela", 'ERROR', {
+                timeOut: 5000,
+                positionClass: 'toast-center-center'
+              });
+            }
+          );
+        }
       },
       error => {
         console.error('Error al eliminar:', error);
@@ -144,6 +175,6 @@ export class PresupuestoComponent implements OnInit {
         });
       }
     );
-    this.filtro()
+    this.filtro();
   }
 }

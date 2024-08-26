@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CotizadorService } from '../service/cotizador.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
   styleUrls: ['./cotizador.component.css']
 })
-export class CotizadorComponent {
+export class CotizadorComponent implements OnInit {
   alto: number = 0;
   ancho: number = 0;
   sistema: string = "";
@@ -32,7 +33,24 @@ export class CotizadorComponent {
   cotizaciones: any[] = [];
   sumatoria: number = 0;
 
-  constructor(private cotizadorService: CotizadorService) { }
+  constructor(private cotizadorService: CotizadorService, private route: ActivatedRoute) {
+    this.route.queryParams.subscribe(params => {
+      this.ancho = +params['ancho'] || 0;
+      this.alto = +params['alto'] || 0;
+    });
+  }
+  ngOnInit(): void {
+    const savedCotizaciones = localStorage.getItem('cotizaciones');
+    const savedSumatoria = localStorage.getItem('sumatoria');
+
+    if (savedCotizaciones) {
+      this.cotizaciones = JSON.parse(savedCotizaciones);
+    }
+
+    if (savedSumatoria) {
+      this.sumatoria = parseFloat(savedSumatoria);
+    }
+  }
 
   onMarca(): void {
     this.sistema = "";
@@ -165,11 +183,15 @@ export class CotizadorComponent {
       this.cotizaciones.push(this.resultado);
       this.sumatoria += this.resultado;
       this.resultado = null;
+      localStorage.setItem('cotizaciones', JSON.stringify(this.cotizaciones));
+      localStorage.setItem('sumatoria', this.sumatoria.toString());
     }
   }
 
   borrar(): void {
     this.cotizaciones = [];
     this.sumatoria = 0;
+    localStorage.removeItem('cotizaciones');
+    localStorage.removeItem('sumatoria');
   }
 }

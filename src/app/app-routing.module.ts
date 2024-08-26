@@ -14,6 +14,9 @@ import {UnoComponent} from './cliente/uno/uno.component'
 import { CotizadorComponent } from './cotizador/cotizador.component';
 import { TelasComponent } from './telas/telas.component';
 import { EditarTelasComponent } from './telas/editar-telas/editar-telas.component';
+import { ConfeccionComponent } from './confeccion/confeccion.component';
+import { NuevaConfeccionComponent } from './confeccion/nueva-confeccion/nueva-confeccion.component';
+import { EditarConfeccionComponent } from './confeccion/editar-confeccion/editar-confeccion.component';
 
 const routes: Routes = [
   {path: '', component: PrincipalComponent},
@@ -30,6 +33,10 @@ const routes: Routes = [
   {path: 'presupuesto/lista', component: PresupuestoComponent},
   {path: 'presupuesto/nuevo', component: NuevoPresupuestoComponent},
   {path: 'presupuesto/editar/:id', component: EditarPresupuestoComponent},
+
+  {path: 'confeccion/lista', component: ConfeccionComponent},
+  {path: 'confeccion/nuevo', component: NuevaConfeccionComponent},
+  {path: 'confeccion/editar/:id', component: EditarConfeccionComponent},
 
   {path: 'cotizador', component: CotizadorComponent},
 
