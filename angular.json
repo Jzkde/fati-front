@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "@angular/material/prebuilt-themes/indigo-pink.css",
@@ -93,7 +94,7 @@
               "src/assets"
             ],
             "styles": [
-             "src/styles.css",
+              "src/styles.css",
               "@angular/material/prebuilt-themes/indigo-pink.css"
             ],
             "scripts": [

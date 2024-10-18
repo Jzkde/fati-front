@@ -37,6 +37,7 @@ import { EditarTelasComponent } from './telas/editar-telas/editar-telas.componen
 import { ConfeccionComponent } from './confeccion/confeccion.component';
 import { NuevaConfeccionComponent } from './confeccion/nueva-confeccion/nueva-confeccion.component';
 import { EditarConfeccionComponent } from './confeccion/editar-confeccion/editar-confeccion.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,8 @@ import { EditarConfeccionComponent } from './confeccion/editar-confeccion/editar
     ModalModule.forRoot(),
     TooltipModule.forRoot(),
     CollapseModule.forRoot(),
-    AlertModule.forRoot()
+    AlertModule.forRoot(),
+    BsDropdownModule.forRoot()
   ],
   providers: [BsModalService],
   bootstrap: [AppComponent],

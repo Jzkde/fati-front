@@ -1,16 +1,36 @@
-<div class="d-flex justify-content-evenly mt-3">
-    <button mat-button routerLink="">Inicio</button>
-    <button mat-button [matMenuTriggerFor]="menu2" class="btn btn-outline-success">Pedidos</button>
-    <mat-menu #menu2="matMenu">
-        <button mat-menu-item routerLink="pedido/lista">Lista</button>
-        <button mat-menu-item routerLink="pedido/nuevo">Nuevo</button>
-    </mat-menu>
-    <button mat-button routerLink="confeccion/lista">Confecciones</button>
-    <button mat-button routerLink="presupuesto/lista">Medidas</button>
-    <button mat-button routerLink="cotizador">Cotizar</button>
-    <button mat-button [matMenuTriggerFor]="menu4" class="btn btn-outline-success">Productos</button>
-    <mat-menu #menu4="matMenu">
-        <button mat-menu-item routerLink="db">Nuevo</button>
-        <button mat-menu-item routerLink="tela/editar">Editar</button>
-    </mat-menu>
+<div class="d-flex flex-wrap justify-content-evenly mt-3">
+    <button type="button" class="btn btn-outline-success mb-2" routerLink="">Inicio</button>
+    <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-outline-success mb-2" routerLink="pedido/lista">Pedidos</button>
+
+        <button id="button-split" type="button" dropdownToggle
+            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split mb-2" aria-controls="dropdown-split">
+            <span class="caret"></span>
+            <span class="sr-only visually-hidden"></span>
+        </button>
+        <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+            <li role="menuitem"><a class="dropdown-item" href="pedido/lista">Lista</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="pedido/nuevo">Nuevo</a>
+            </li>
+        </ul>
+    </div>
+
+    <button type="button" class="btn btn-outline-success mb-2" routerLink="confeccion/lista">Confecciones</button>
+    <button type="button" class="btn btn-outline-success mb-2" routerLink="presupuesto/lista">Medidas</button>
+    <button type="button" class="btn btn-outline-success mb-2" routerLink="cotizador">Cotizar</button>
+    
+    <div class="btn-group" dropdown>
+        <button type="button" class="btn btn-outline-success " routerLink="tela/editar">Productos</button>
+
+        <button id="button-split" type="button" dropdownToggle
+            class="btn btn-outline-success dropdown-toggle dropdown-toggle-split " aria-controls="dropdown-split">
+            <span class="caret"></span>
+            <span class="sr-only visually-hidden"></span>
+        </button>
+        <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+            <li role="menuitem"><a class="dropdown-item" href="db">Nuevo</a></li>
+            <li role="menuitem"><a class="dropdown-item" href="tela/editar">Editar</a>
+            </li>
+        </ul>
+    </div>
 </div>

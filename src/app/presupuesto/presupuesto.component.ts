@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Presupuesto } from '../models/presupuesto';
 import { PresupuestoService } from '../service/presupuesto.service';
 import { ToastrService } from 'ngx-toastr';
@@ -12,6 +12,7 @@ import { ConfeccionService } from '../service/confeccion.service';
 })
 export class PresupuestoComponent implements OnInit {
 
+  @ViewChild('lgModal2', { static: false }) lgModal2: any;
   buscados: any[] = [];
   selectedPresupuestos: Presupuesto[] = [];
   presupuestoAgrupados: { cliente: string, items: Presupuesto[] }[] = [];
@@ -123,6 +124,7 @@ export class PresupuestoComponent implements OnInit {
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
+      this.lgModal2.hide();
     }, error => {
       this.toastr.error("Los clientes NO coinciden", 'ERROR', {
         timeOut: 5000,
@@ -154,7 +156,7 @@ export class PresupuestoComponent implements OnInit {
         const presupuesto = this.buscados.find(p => p.id === id);
         console.log(presupuesto);
 
-        if (presupuesto && presupuesto.sistema === 'TELA'&& presupuesto.comprado == false) {
+        if (presupuesto && presupuesto.sistema === 'TELA' && presupuesto.comprado == false) {
           this.confeccionService.mover(presupuesto).subscribe(
             response => { },
             error => {
@@ -166,6 +168,7 @@ export class PresupuestoComponent implements OnInit {
             }
           );
         }
+        window.location.reload();
       },
       error => {
         console.error('Error al eliminar:', error);
@@ -175,6 +178,5 @@ export class PresupuestoComponent implements OnInit {
         });
       }
     );
-    this.filtro();
   }
 }
