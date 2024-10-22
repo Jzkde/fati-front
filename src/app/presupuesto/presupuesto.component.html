@@ -16,19 +16,20 @@
                             <table class="table table-hover">
                                 <thead>
                                     <tr>
-                                        <th scope="col">imp</th>
-                                        <th scope="col">Sistema</th>
-                                        <th scope="col">Ancho</th>
-                                        <th scope="col">Alto</th>
-                                        <th scope="col">Comando</th>
-                                        <th scope="col">Apertura</th>
-                                        <th scope="col">Accesorios</th>
-                                        <th scope="col">Ambiente</th>
-                                        <th scope="col">Observaciones</th>
-                                        <th scope="col">Fecha</th>
-                                        <th scope="col">Encargar</th>
-                                        <th scope="col">Cotizar</th>
-                                        <th scope="col">Ediar</th>
+                                        <th scope="col" class="text-center align-middle">imp</th>
+                                        <th scope="col" class="text-center align-middle">Sistema</th>
+                                        <th scope="col" class="text-center align-middle">Ancho</th>
+                                        <th scope="col" class="text-center align-middle">Alto</th>
+                                        <th scope="col" class="text-center align-middle">Com</th>
+                                        <th scope="col" class="text-center align-middle">Ap</th>
+                                        <th scope="col" class="text-center align-middle">Caida / Largo</th>
+                                        <th scope="col" class="text-center align-middle">Accesorios</th>
+                                        <th scope="col" class="text-center align-middle">Ambiente</th>
+                                        <th scope="col" class="text-center align-middle">Observaciones</th>
+                                        <th scope="col" class="text-center align-middle">Fecha</th>
+                                        <th scope="col" class="text-center align-middle">Encargar</th>
+                                        <th scope="col" class="text-center align-middle">Cotizar</th>
+                                        <th scope="col" class="text-center align-middle">Ediar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,8 +43,17 @@
                                         <td>{{presupuesto.sistema}}</td>
                                         <td>{{presupuesto.ancho}}</td>
                                         <td>{{presupuesto.alto}}</td>
-                                        <td>{{presupuesto.comando}}</td>
-                                        <td>{{presupuesto.apertura}}</td>
+                                        <td>
+                                            {{ presupuesto.comando === 'DERECHO' ? 'DER' : 
+                                               presupuesto.comando === 'IZQUIERDO' ? 'IZQ' : '- - -' }}
+                                          </td>
+                                          <td>
+                                            {{ presupuesto.apertura === 'DERECHA' ? 'DER' : 
+                                               presupuesto.apertura === 'BILATERAL' ? 'BIL' : 
+                                               presupuesto.apertura === 'CENTRAL' ? 'CNT' : 
+                                               presupuesto.apertura === 'IZQUIERDA' ? 'IZQ' : '- - -' }}
+                                          </td>
+                                          <td class="col-1 text-center" >{{ presupuesto.caida ? 'SI' : 'NO' }}</td>
                                         <td>{{presupuesto.accesorios}}</td>
                                         <td>{{presupuesto.ambiente}}</td>
                                         <td>{{presupuesto.observaciones}}</td>

@@ -34,7 +34,8 @@ export class EditarPresupuestoComponent implements OnInit {
       accesorios: '',
       ambiente: '',
       observaciones: '',
-      fecha: ''
+      fecha: '',
+      caida: ''
     }
 
     const id = this.activatedRoute.snapshot.params['id'];

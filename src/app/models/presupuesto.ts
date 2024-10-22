@@ -10,9 +10,11 @@ export class Presupuesto {
     ambiente?: string;
     observaciones?: string;
     clienteNombre: string;
+    caida: string;
     fecha?: string;
     viejo?: string;
     comprado?: string;
+
 
     constructor(
         sistema: string,
@@ -21,6 +23,7 @@ export class Presupuesto {
         comando: string,
         apertura: string,
         clienteNombre: string,
+        caida: string,
         accesorios?: string,
         ambiente?: string,
         observaciones?: string,
@@ -34,5 +37,6 @@ export class Presupuesto {
         this.ambiente = ambiente
         this.observaciones = observaciones
         this.clienteNombre = clienteNombre
+        this.caida = caida
     }
 }

@@ -11,6 +11,8 @@ import { PresupuestoService } from 'src/app/service/presupuesto.service';
 })
 export class NuevoPresupuestoComponent implements OnInit {
 
+  presupuesto!: Presupuesto
+  
   sistema: string = '';
   ancho: number = 0;
   alto: number = 0;
@@ -20,6 +22,7 @@ export class NuevoPresupuestoComponent implements OnInit {
   accesorios: string = '';
   ambiente: string = '';
   observaciones: string = '';
+  caida: string = ''
 
   constructor(
     private router: Router,
@@ -40,9 +43,10 @@ export class NuevoPresupuestoComponent implements OnInit {
       this.comando,
       this.apertura,
       this.cliente,
+      this.caida,
       this.accesorios,
       this.ambiente,
-      this.observaciones,
+      this.observaciones
     );
     this.presupuestoService.nuevo(npresup).subscribe(
       data => {

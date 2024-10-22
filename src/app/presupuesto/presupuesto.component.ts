@@ -65,6 +65,8 @@ export class PresupuestoComponent implements OnInit {
         this.buscados = data;
         this.presupuestosCliente();
         this.resetfiltros()
+        console.log(data);
+        
       },
       err => {
         console.error('Error al filtrar presupuestos:', err);
