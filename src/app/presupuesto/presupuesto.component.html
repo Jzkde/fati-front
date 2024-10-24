@@ -27,9 +27,7 @@
                                         <th scope="col" class="text-center align-middle">Ambiente</th>
                                         <th scope="col" class="text-center align-middle">Observaciones</th>
                                         <th scope="col" class="text-center align-middle">Fecha</th>
-                                        <th scope="col" class="text-center align-middle">Encargar</th>
-                                        <th scope="col" class="text-center align-middle">Cotizar</th>
-                                        <th scope="col" class="text-center align-middle">Ediar</th>
+                                        <th scope="col" class="text-center align-middle">Encargar / Editar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,40 +42,56 @@
                                         <td>{{presupuesto.ancho}}</td>
                                         <td>{{presupuesto.alto}}</td>
                                         <td>
-                                            {{ presupuesto.comando === 'DERECHO' ? 'DER' : 
-                                               presupuesto.comando === 'IZQUIERDO' ? 'IZQ' : '- - -' }}
-                                          </td>
-                                          <td>
-                                            {{ presupuesto.apertura === 'DERECHA' ? 'DER' : 
-                                               presupuesto.apertura === 'BILATERAL' ? 'BIL' : 
-                                               presupuesto.apertura === 'CENTRAL' ? 'CNT' : 
-                                               presupuesto.apertura === 'IZQUIERDA' ? 'IZQ' : '- - -' }}
-                                          </td>
-                                          <td class="col-1 text-center" >{{ presupuesto.caida ? 'SI' : 'NO' }}</td>
+                                            {{ presupuesto.comando === 'DERECHO' ? 'DER' :
+                                            presupuesto.comando === 'IZQUIERDO' ? 'IZQ' : '- - -' }}
+                                        </td>
+                                        <td>
+                                            {{ presupuesto.apertura === 'DERECHA' ? 'DER' :
+                                            presupuesto.apertura === 'BILATERAL' ? 'BIL' :
+                                            presupuesto.apertura === 'CENTRAL' ? 'CNT' :
+                                            presupuesto.apertura === 'IZQUIERDA' ? 'IZQ' : '- - -' }}
+                                        </td>
+                                        <td class="col-1 text-center">{{ presupuesto.caida ? 'SI' : 'NO' }}</td>
                                         <td>{{presupuesto.accesorios}}</td>
                                         <td>{{presupuesto.ambiente}}</td>
                                         <td>{{presupuesto.observaciones}}</td>
                                         <td>{{presupuesto.fecha}}</td>
-                                        <td>
-                                            <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
-                                                (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista">
-                                                <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
-                                            </button>
-                                            <button *ngIf="!presupuesto.comprado" class=" btn btn-outline-primary"
-                                                (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista">
-                                                <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-outline-primary" (click)="enviarACotizador(presupuesto)">
-                                                <i class="fa-solid fa-calculator" style="color: #000000;"></i>
-                                            </button>
-                                          </td>
-                                        <td> <button class="btn btn-outline-success"
-                                                routerLink="/presupuesto/editar/{{presupuesto.id}}"
-                                                tooltip="Editar Medidas">
-                                                <i class="fa-solid fa-pencil" style="color: #000000;"></i>
-                                            </button>
+                                        <td class="text-center">
+                                            <div class="btn-group" dropdown [dropup]="isDropup">
+                                                <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
+                                                    (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista"
+                                                    tooltip="Recuperar">
+                                                    <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
+                                                </button>
+                                                <button *ngIf="!presupuesto.comprado" class=" btn btn-outline-primary"
+                                                    (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista"
+                                                    tooltip="Encargar">
+                                                    <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
+                                                </button>
+                                                <button id="button-split" type="button" dropdownToggle
+                                                    class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split "
+                                                    aria-controls="dropdown-split"
+                                                    tooltip="Mas">
+                                                    <span class="caret"></span>
+                                                    <span class="sr-only visually-hidden"></span>
+                                                </button>
+
+                                                <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu"
+                                                    aria-labelledby="button-split">
+                                                    <li role="menuitem"> <button class="btn btn-outline-primary m-2"
+                                                            (click)="enviarACotizador(presupuesto)"
+                                                            tooltip="Cotizar">
+                                                            <i class="fa-solid fa-calculator"
+                                                                style="color: #000000;"></i>
+                                                        </button>
+                                                        <button class="btn btn-outline-success m-2"
+                                                            routerLink="/presupuesto/editar/{{presupuesto.id}}"
+                                                            tooltip="Editar">
+                                                            <i class="fa-solid fa-pencil" style="color: #000000;"></i>
+                                                        </button>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>

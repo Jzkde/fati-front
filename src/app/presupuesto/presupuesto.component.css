@@ -1,3 +1,6 @@
 .table-hover .viejo {
     background-color: red !important;
 }
+.dropdown-menu {
+    width: 150px;
+  }

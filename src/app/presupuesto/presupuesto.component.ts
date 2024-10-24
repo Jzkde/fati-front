@@ -16,6 +16,7 @@ export class PresupuestoComponent implements OnInit {
   buscados: any[] = [];
   selectedPresupuestos: Presupuesto[] = [];
   presupuestoAgrupados: { cliente: string, items: Presupuesto[] }[] = [];
+  isDropup = true;
 
 
   tel: string = ''
