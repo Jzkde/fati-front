@@ -66,8 +66,8 @@ export class PresupuestoComponent implements OnInit {
         this.buscados = data;
         this.presupuestosCliente();
         this.resetfiltros()
-        console.log(data);
-        
+        //console.log(data);
+
       },
       err => {
         console.error('Error al filtrar presupuestos:', err);
@@ -157,7 +157,7 @@ export class PresupuestoComponent implements OnInit {
         });
 
         const presupuesto = this.buscados.find(p => p.id === id);
-        console.log(presupuesto);
+        // console.log(presupuesto);
 
         if (presupuesto && presupuesto.sistema === 'TELA' && presupuesto.comprado == false) {
           this.confeccionService.mover(presupuesto).subscribe(
@@ -176,6 +176,23 @@ export class PresupuestoComponent implements OnInit {
       error => {
         console.error('Error al eliminar:', error);
         this.toastr.error("No se pudo Encargar", 'ERROR', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      }
+    );
+  }
+  borrar(id: number): void {
+    this.presupuestoService.borrar(id).subscribe(
+      response => {
+        this.toastr.success("PRESUPUESTO eliminado", 'OK', {
+          timeOut: 5000,
+          positionClass: 'toast-center-center'
+        });
+      },
+      error => {
+        console.error('Error al eliminar:', error);
+        this.toastr.error("No se pudo eliminar el PRESUPUESTO", 'ERROR', {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });

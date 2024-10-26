@@ -13,7 +13,7 @@
                             </mat-panel-title>
                         </mat-expansion-panel-header>
                         <div>
-                            <table class="table table-hover">
+                            <table class="table table-hover text-center">
                                 <thead>
                                     <tr>
                                         <th scope="col" class="text-center align-middle">imp</th>
@@ -33,7 +33,7 @@
                                 <tbody>
                                     <tr *ngFor="let presupuesto of group.items"
                                         [ngClass]="{'table-danger': presupuesto.viejo}">
-                                        <td>
+                                        <td class="text-center">
                                             <input type="checkbox"
                                                 name="{{presupuesto.id}}+{{presupuesto.clienteNombre}}"
                                                 (change)="onPresupuestoSelect(presupuesto, $event)">
@@ -57,40 +57,43 @@
                                         <td>{{presupuesto.observaciones}}</td>
                                         <td>{{presupuesto.fecha}}</td>
                                         <td class="text-center">
-                                            <div class="btn-group" dropdown [dropup]="isDropup">
-                                                <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
-                                                    (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista"
-                                                    tooltip="Recuperar">
-                                                    <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
-                                                </button>
-                                                <button *ngIf="!presupuesto.comprado" class=" btn btn-outline-primary"
-                                                    (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista"
-                                                    tooltip="Encargar">
-                                                    <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
-                                                </button>
-                                                <button id="button-split" type="button" dropdownToggle
-                                                    class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split "
-                                                    aria-controls="dropdown-split"
-                                                    tooltip="Mas">
-                                                    <span class="caret"></span>
-                                                    <span class="sr-only visually-hidden"></span>
-                                                </button>
 
-                                                <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu"
-                                                    aria-labelledby="button-split">
-                                                    <li role="menuitem"> <button class="btn btn-outline-primary m-2"
-                                                            (click)="enviarACotizador(presupuesto)"
-                                                            tooltip="Cotizar">
-                                                            <i class="fa-solid fa-calculator"
-                                                                style="color: #000000;"></i>
-                                                        </button>
-                                                        <button class="btn btn-outline-success m-2"
-                                                            routerLink="/presupuesto/editar/{{presupuesto.id}}"
-                                                            tooltip="Editar">
-                                                            <i class="fa-solid fa-pencil" style="color: #000000;"></i>
-                                                        </button>
-                                                    </li>
+                                            <div class="btn-group dropstart">
+                                                <button type="button"
+                                                    class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <span class="visually-hidden"></span>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <button class="btn btn-outline-primary ms-2"
+                                                        (click)="enviarACotizador(presupuesto)" tooltip="Cotizar">
+                                                        <i class="fa-solid fa-calculator" style="color: #000000;"></i>
+                                                    </button>
+                                                    <button class="btn btn-outline-success m-2"
+                                                        routerLink="/presupuesto/editar/{{presupuesto.id}}"
+                                                        tooltip="Editar">
+                                                        <i class="fa-solid fa-pencil" style="color: #000000;"></i>
+                                                    </button>
+                                                    <button class=" btn btn-outline-danger" (click)="borrar(presupuesto.id!)"
+                                                        routerLink="/presupuesto/lista" 
+                                                        tooltip="Borrar">
+                                                        <i class="fa-solid fa-eraser" style="color: #000000;"></i>
+                                                    </button>
                                                 </ul>
+
+                                               
+                                                    <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
+                                                        (click)="comprar(presupuesto.id!)"
+                                                        routerLink="/presupuesto/lista" tooltip="Recuperar">
+                                                        <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
+                                                    </button>
+                                                    <button *ngIf="!presupuesto.comprado"
+                                                        class=" btn btn-outline-primary"
+                                                        (click)="comprar(presupuesto.id!)"
+                                                        routerLink="/presupuesto/lista" tooltip="Encargar">
+                                                        <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
+                                                    </button>
+                                                
                                             </div>
                                         </td>
                                     </tr>

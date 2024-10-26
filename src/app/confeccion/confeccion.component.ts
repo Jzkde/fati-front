@@ -53,7 +53,7 @@ export class ConfeccionComponent {
         this.buscados = data;
         this.confeccionesCliente();
         this.resetfiltros()
-        console.log(this.buscados);
+        //console.log(this.buscados);
       },
       err => {
         console.error('Error al filtrar confecciones:', err);
