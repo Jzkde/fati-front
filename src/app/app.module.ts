@@ -9,10 +9,15 @@ import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MaterialModule } from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AlertModule } from 'ngx-bootstrap/alert';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { PedidoComponent } from './pedido/pedido.component';
 import { NuevoPedidoComponent } from './pedido/nuevo/nuevoPedido.component';
@@ -28,16 +33,18 @@ import { EditarClienteComponent } from './cliente/editar/editarCliente.component
 import { UnoComponent } from './cliente/uno/uno.component';
 
 import { PrincipalComponent } from './principal/principal.component';
+
 import { NavbarComponent } from './navbar/navbar.component';
-import { CollapseModule } from 'ngx-bootstrap/collapse';
-import { AlertModule } from 'ngx-bootstrap/alert';
+
 import { CotizadorComponent } from './cotizador/cotizador.component';
+
 import { TelasComponent } from './telas/telas.component';
 import { EditarTelasComponent } from './telas/editar-telas/editar-telas.component';
+
 import { ConfeccionComponent } from './confeccion/confeccion.component';
 import { NuevaConfeccionComponent } from './confeccion/nueva-confeccion/nueva-confeccion.component';
 import { EditarConfeccionComponent } from './confeccion/editar-confeccion/editar-confeccion.component';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+
 
 @NgModule({
   declarations: [
@@ -69,6 +76,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     MaterialModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+    MatButtonToggleModule,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     TooltipModule.forRoot(),

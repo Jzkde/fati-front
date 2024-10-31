@@ -56,6 +56,8 @@ export class PedidoComponent implements OnInit {
 
   filtro(): void {
     this.toastr.clear();
+    console.log(this.busqueda);
+    
     this.pedidoService.filtro(this.busqueda).subscribe(
       data => {
         this.buscados = data;

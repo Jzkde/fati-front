@@ -18,6 +18,7 @@ export class PresupuestoComponent implements OnInit {
   presupuestoAgrupados: { cliente: string, items: Presupuesto[] }[] = [];
   isDropup = true;
 
+  hideSingleSelectionIndicator=false
 
   tel: string = ''
   direcc: string = ''
@@ -65,8 +66,10 @@ export class PresupuestoComponent implements OnInit {
       data => {
         this.buscados = data;
         this.presupuestosCliente();
-        this.resetfiltros()
+        //this.resetfiltros()
         //console.log(data);
+        //console.log(this.busqueda);
+        
 
       },
       err => {

@@ -130,13 +130,31 @@
                             <form>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="input-group">
+                                        <div class="input-group mb-3">
                                             <input type="text" class="form-control" placeholder="Cliente"
                                                 name="clienteNombre" id="clienteNombre"
                                                 [(ngModel)]="busqueda.clienteNombre" (input)="filtro()">
-                                            <button class="btn btn-outline-secondary" type="button">Button</button>
-                                            <button class="btn btn-outline-secondary" type="button">Button</button>
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="viejo"><b>Viejo?</b></label>
+                                        <mat-button-toggle-group name="viejo" aria-label="viejo"
+                                            [(ngModel)]="busqueda.viejo" (change)="filtro()">
+                                            <mat-button-toggle value="true">Si</mat-button-toggle>
+                                            <mat-button-toggle value="">Todos</mat-button-toggle>
+                                            <mat-button-toggle value="false">No</mat-button-toggle>
+                                        </mat-button-toggle-group>
+                                    </div>
+                                    <div class="col">
+                                        <label for="comprado"><b>Comprado?</b></label>
+                                        <mat-button-toggle-group name="comprado" aria-label="comprado"
+                                            [(ngModel)]="busqueda.comprado" (change)="filtro()">
+                                            <mat-button-toggle value="true">Si</mat-button-toggle>
+                                            <mat-button-toggle value="">Todos</mat-button-toggle>
+                                            <mat-button-toggle value="false">No</mat-button-toggle>
+                                        </mat-button-toggle-group>
                                     </div>
                                 </div>
                                 &nbsp;
