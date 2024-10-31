@@ -145,7 +145,15 @@ export class PresupuestoComponent implements OnInit {
       }
       agrupados.get(cliente)?.push(presupuesto);
     });
-    this.presupuestoAgrupados = Array.from(agrupados, ([cliente, items]) => ({ cliente, items }));
+    this.presupuestoAgrupados = Array.from(agrupados, ([cliente, items]) => ({
+      cliente,
+      items: items.sort((b, a) => {
+        // Validamos que las fechas no sean undefined y les asignamos un valor predeterminado
+        const fechaA = a.fecha ? new Date(a.fecha).getTime() : 0;
+        const fechaB = b.fecha ? new Date(b.fecha).getTime() : 0;
+        return fechaA - fechaB;
+      })
+    }));
   }
 
   comprar(id: number): void {
@@ -189,6 +197,7 @@ export class PresupuestoComponent implements OnInit {
           timeOut: 5000,
           positionClass: 'toast-center-center'
         });
+        this.filtro()
       },
       error => {
         console.error('Error al eliminar:', error);

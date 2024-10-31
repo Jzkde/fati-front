@@ -74,26 +74,25 @@
                                                         tooltip="Editar">
                                                         <i class="fa-solid fa-pencil" style="color: #000000;"></i>
                                                     </button>
-                                                    <button class=" btn btn-outline-danger" (click)="borrar(presupuesto.id!)"
-                                                        routerLink="/presupuesto/lista" 
-                                                        tooltip="Borrar">
+                                                    <button class=" btn btn-outline-danger"
+                                                        (click)="borrar(presupuesto.id!)"
+                                                        routerLink="/presupuesto/lista" tooltip="Borrar">
                                                         <i class="fa-solid fa-eraser" style="color: #000000;"></i>
                                                     </button>
                                                 </ul>
 
-                                               
-                                                    <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
-                                                        (click)="comprar(presupuesto.id!)"
-                                                        routerLink="/presupuesto/lista" tooltip="Recuperar">
-                                                        <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
-                                                    </button>
-                                                    <button *ngIf="!presupuesto.comprado"
-                                                        class=" btn btn-outline-primary"
-                                                        (click)="comprar(presupuesto.id!)"
-                                                        routerLink="/presupuesto/lista" tooltip="Encargar">
-                                                        <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
-                                                    </button>
-                                                
+
+                                                <button *ngIf="presupuesto.comprado" class=" btn btn-outline-danger"
+                                                    (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista"
+                                                    tooltip="Recuperar">
+                                                    <i class="fa-solid fa-thumbs-down" style="color: #000000;"></i>
+                                                </button>
+                                                <button *ngIf="!presupuesto.comprado" class=" btn btn-outline-primary"
+                                                    (click)="comprar(presupuesto.id!)" routerLink="/presupuesto/lista"
+                                                    tooltip="Encargar">
+                                                    <i class="fa-solid fa-thumbs-up" style="color: #000000;"></i>
+                                                </button>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -131,13 +130,12 @@
                             <form>
                                 <div class="row">
                                     <div class="col">
-                                        <div class="form-grup">
-                                            <label for="clienteNombre"><b>Cliente</b></label>
-                                            <div class="input-group">
-                                                <input type="text" class="form-control" name="clienteNombre"
-                                                    id="clienteNombre" [(ngModel)]="busqueda.clienteNombre"
-                                                    (input)="filtro()">
-                                            </div>
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" placeholder="Cliente"
+                                                name="clienteNombre" id="clienteNombre"
+                                                [(ngModel)]="busqueda.clienteNombre" (input)="filtro()">
+                                            <button class="btn btn-outline-secondary" type="button">Button</button>
+                                            <button class="btn btn-outline-secondary" type="button">Button</button>
                                         </div>
                                     </div>
                                 </div>

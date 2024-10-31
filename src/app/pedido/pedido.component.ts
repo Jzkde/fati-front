@@ -31,7 +31,8 @@ export class PedidoComponent implements OnInit {
     responsable: '',
     tela: '',
     estela: 'false',
-    sistema: ''
+    sistema: '',
+    comprado: ''
   };
 
   constructor(

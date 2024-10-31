@@ -32,7 +32,8 @@ export class EditarTelasComponent {
     fecha_llegada: '',
     estado: '',
     clienteNombre: '',
-    responsable: ''
+    responsable: '',
+    comprado: ''
   };
 
   prod: any = "";

@@ -15,4 +15,5 @@ export interface Busqueda{
     tela: string;
     estela: string;
     sistema: string;
+    comprado: string;
 }
