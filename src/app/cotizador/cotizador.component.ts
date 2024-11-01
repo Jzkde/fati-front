@@ -113,8 +113,8 @@ export class CotizadorComponent implements OnInit {
       }
     );
     this.cotizadorService.getAdicionalesRoyal().subscribe(
-      data => this.adicionales = data,
-      error => {
+      (data) => (this.adicionales = data),
+      (error) => {
         this.error = 'Error al cargar los adicionales disponibles';
         this.adicionales = [];
       }
