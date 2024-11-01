@@ -149,13 +149,15 @@
             </div>
           </form>
         </div>
-        <div class="col-3 bg-success-subtle border-success sumatoria" >
+        <div class="col-3 bg-success-subtle border-success sumatoria">
           <div class="row mt-3" *ngIf="sistema">
             <div class="col">
               <h2 class="text-center">Sumatoria</h2>
-              <ul class="list-group">
-                <li class="list-group-item text-center" *ngFor="let cotizacion of cotizaciones">{{ cotizacion |
-                  currency}}</li>
+              <ul class="list-group" *ngFor="let cotizacion of cotizaciones">
+                <li class="list-group-item text-center">
+                  <div matBadge="{{cotizacion.contador}}" matBadgeOverlap="false" class="demo-section">
+                   {{cotizacion.monto | currency}}</div>
+                </li>
               </ul>
             </div>
           </div>

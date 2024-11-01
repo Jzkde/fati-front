@@ -5,40 +5,51 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-cotizador',
   templateUrl: './cotizador.component.html',
-  styleUrls: ['./cotizador.component.css']
+  styleUrls: ['./cotizador.component.css'],
 })
 export class CotizadorComponent implements OnInit {
-  alto: number = 0;
-  ancho: number = 0;
-  sistema: string = "";
-  resultado: any;
-  error: string = "";
+  marca: string = '';
+
+  sistema: string = '';
+  precioSistema: number = 0;
+
+  mecanismos: any[] = [];
+  mecanismoN: string = '';
 
   telas: any[] = [];
-  telaN: string = "";
-  mecanismos: any[] = [];
-  mecanismoN: string = "";
-  adicionales: any[] = [];
+  telaN: string = '';
+  precioTela: number = 0;
+
+  alto: number = 0;
+  ancho: number = 0;
+
   colocaciones: any[] = [];
   colocN: string = '';
+  precioColoc: number = 0;
 
-  area: number = 0;
-  marca: string = "";
+  adicionales: any[] = [];
   adicional: number = 0;
 
-  precioTela: number = 0;
-  precioColoc: number = 0;
-  precioSistema: number = 0;
+  area: number = 0;
+
+  resultado: any;
 
   cotizaciones: any[] = [];
   sumatoria: number = 0;
+  contador: number = 1;
 
-  constructor(private cotizadorService: CotizadorService, private route: ActivatedRoute) {
-    this.route.queryParams.subscribe(params => {
+  error: string = "";
+
+  constructor(
+    private cotizadorService: CotizadorService,
+    private route: ActivatedRoute
+  ) {
+    this.route.queryParams.subscribe((params) => {
       this.ancho = +params['ancho'] || 0;
       this.alto = +params['alto'] || 0;
     });
   }
+
   ngOnInit(): void {
     const savedCotizaciones = localStorage.getItem('cotizaciones');
     const savedSumatoria = localStorage.getItem('sumatoria');
@@ -89,6 +100,7 @@ export class CotizadorComponent implements OnInit {
           this.colocaciones = [];
         }
       );
+
       if (this.marca == 'RC') {
         this.cargarDatosRoyal();
       } else if (this.marca == 'FLEX') {
@@ -113,8 +125,8 @@ export class CotizadorComponent implements OnInit {
       }
     );
     this.cotizadorService.getAdicionalesRoyal().subscribe(
-      (data) => (this.adicionales = data),
-      (error) => {
+      data => this.adicionales = data,
+      error => {
         this.error = 'Error al cargar los adicionales disponibles';
         this.adicionales = [];
       }
@@ -123,22 +135,22 @@ export class CotizadorComponent implements OnInit {
 
   cargarDatosFlex(): void {
     this.cotizadorService.getTelasFlex(this.sistema).subscribe(
-      data => this.telas = data,
-      error => {
+      (data) => (this.telas = data),
+      (error) => {
         this.error = 'Error al cargar las telas disponibles';
         this.telas = [];
       }
     );
     this.cotizadorService.getSistemasFlex(this.sistema).subscribe(
-      data => this.mecanismos = data,
-      error => {
+      (data) => (this.mecanismos = data),
+      (error) => {
         this.error = 'Error al cargar los mecanismos disponibles';
         this.mecanismos = [];
       }
     );
     this.cotizadorService.getAdicionalesFlex().subscribe(
-      data => this.adicionales = data,
-      error => {
+      (data) => (this.adicionales = data),
+      (error) => {
         this.error = 'Error al cargar los adicionales disponibles';
         this.adicionales = [];
       }
@@ -148,25 +160,27 @@ export class CotizadorComponent implements OnInit {
   cotizar(): void {
     const area = this.calcularArea();
     if (this.marca == 'RC') {
-      this.cotizadorService.cotizarRoyal(this.telaN, this.alto, this.ancho, this.sistema)
+      this.cotizadorService
+        .cotizarRoyal(this.telaN, this.alto, this.ancho, this.sistema)
         .subscribe(
-          data => {
+          (data) => {
             this.resultado = data + this.precioColoc + this.adicional;
-            this.error = "";
+            this.error = '';
           },
-          error => {
+          (error) => {
             this.resultado = null;
             this.error = error.error.text;
           }
         );
     } else if (this.marca == 'FLEX') {
-      this.cotizadorService.cotizarFlex(this.telaN, this.alto, this.ancho, this.sistema)
+      this.cotizadorService
+        .cotizarFlex(this.telaN, this.alto, this.ancho, this.sistema)
         .subscribe(
-          data => {
+          (data) => {
             this.resultado = data + this.precioColoc + this.adicional;
-            this.error = "";
+            this.error = '';
           },
-          error => {
+          (error) => {
             this.resultado = null;
             this.error = error.error.text;
           }
@@ -180,9 +194,14 @@ export class CotizadorComponent implements OnInit {
 
   agregarCotizacion(): void {
     if (this.resultado && typeof this.resultado === 'number') {
-      this.cotizaciones.push(this.resultado);
+      const nuevaCotizacion = {
+        contador: this.contador,
+        monto: this.resultado,
+      };
+      this.cotizaciones.push(nuevaCotizacion);
       this.sumatoria += this.resultado;
       this.resultado = null;
+      this.contador++;
       localStorage.setItem('cotizaciones', JSON.stringify(this.cotizaciones));
       localStorage.setItem('sumatoria', this.sumatoria.toString());
     }
@@ -191,6 +210,7 @@ export class CotizadorComponent implements OnInit {
   borrar(): void {
     this.cotizaciones = [];
     this.sumatoria = 0;
+    this.contador = 1;
     localStorage.removeItem('cotizaciones');
     localStorage.removeItem('sumatoria');
   }
